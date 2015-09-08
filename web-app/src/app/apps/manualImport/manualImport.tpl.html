@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Manual Weight Adder</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Manual Weight Adder
+            </div>           
+            <div class="panel-body">
+            <form class="col-lg-6">
+                <div class="form-group">
+                    <label>Farm</label>
+                    <select class="form-control" ng-model="import.farm" ng-options="farm as farm.name for farm in farms"  ng-selected="farm.name" ng-change="updateHerdList(import.farm)" id="selectFarm">
+                    <option value="" selected>--Please Select Your Farm--</option>
+                    </select>
+                </div>
+                <div class="form-group" ng-show="herds.length">
+                    <label>Herd</label>
+                    <select class="form-control"  ng-model="import.herd" ng-options="herd as herd.name for herd in herds"   ng-selected="farm.name" id="selectHerd">
+                    <option value="" selected>--Please Select Your Herd--</option>
+                    </select>
+                </div>                  
+                <div class="form-group">
+                    <label>Algorithms</label>
+                    <select class="form-control" ng-model="import.algorithm" ng-options="algorithm as algorithm.name for algorithm in algorithms" id="selectAlgorithm">
+                    <option value="" selected>--Please Select Your Algorithm--</option>
+                    </select>
+                </div>
+                <div class="form-group">    
+                    <label>Variables</label>    
+                    <input type="text" ng-model="import.eid" class="form-control" placeholder="EID" >
+                    <input type="text" ng-model="import.vid" class="form-control" placeholder="VID">
+                    <input type="text" ng-model="import.weight" class="form-control" placeholder="Weight">
+                </div>
+                <div class="form-footer">               
+                    <button type="submit" class="btn btn-success" ng-click="importData(import)">Submit</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

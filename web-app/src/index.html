@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html ng-app="ngMoogle" ng-controller="AppCtrl">
+    <head>
+        <title ng-bind="pageTitle">Agbase (alpha): Database for Agritech Analytics</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <base href="/ng/">
+        <link type="image/x-icon" href="ng/assets/icon/favicon.ico" />
+
+
+        <!-- according to w3c style must be in the head-->
+        <style>
+            #loadingTitle{
+                font-size: 36px;
+                font-weight: 500;
+                font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
+                position: relative;
+                line-height: 1.1;
+                margin-top: 20px;
+                margin-bottom: 10px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+
+            #mainWrapper{
+                display: none;
+            }
+
+            #loadDiv{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            #loadBar{
+                position: relative;
+            }
+
+            #loadBarProgress{
+                position: absolute;
+                top: 0px;
+                height: 100%;
+                overflow: hidden;
+                width: 0%;
+            }
+
+            body{
+                background-color: rgb(248, 248, 248);
+            }
+        </style>
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-61935653-1', 'auto');
+        </script>
+
+        <script type="text/javascript">
+
+            var jsFiles = <%= scripts.length %>;
+            var cssFiles = <%= styles.length %>;
+            var totalFiles = jsFiles + cssFiles;
+            var progressTotalSteps = 100; //always have 100 steps
+            var progressCounter = 0;
+            var ticksPerFile = progressTotalSteps / totalFiles;
+            var filesLoaded = 0;
+            var isCompleting = false;
+            var intervalTimer;
+
+            function dismissLoader() {
+                console.log("dismissLoader");
+                var loadDiv = document.getElementById('loadDiv');
+                document.body.removeChild(loadDiv);
+                document.getElementById('mainWrapper').style.display = "block";
+            }
+
+            function displayCurrentProgress(){
+
+                var percent = Math.ceil((progressCounter / progressTotalSteps)* 100);
+
+                //console.log("Displaying " + percent + "% progress");
+
+                document.getElementById("loadBarProgress").style.width =  percent + "%";
+            }
+
+            function checkProgress(){
+
+                if(isCompleting){
+                    //console.log("completing");
+                    return;
+                }
+                //console.log("Check Progress.. " + filesLoaded + "/" + totalFiles+" files loaded,  current progress: " + progressCounter);
+
+                if(filesLoaded >= totalFiles){
+                    //console.log("all files loaded");
+                    isCompleting = true;
+                    clearInterval(intervalTimer);
+                    progressCounter = progressTotalSteps;
+                    displayCurrentProgress();
+                    setTimeout(dismissLoader, 500); //show complete for 100ms at the end
+                    return;
+                }
+
+                var expectedProgress = ticksPerFile * filesLoaded;
+
+                if(expectedProgress > progressCounter){
+
+                    progressCounter = expectedProgress;
+                    displayCurrentProgress();
+                    return;
+                }
+
+                //otherwise no files have come in.. maybe we should bump a little
+                //TODO:
+            }
+
+            function fileLoaded(){
+                ++filesLoaded;
+                checkProgress();
+            }
+
+            intervalTimer = setInterval(checkProgress, 10); //always check progress every 10ms
+
+            <!-- load sheet and check to see when it has actually been rendered i.e onload doesnt work-->
+            function addStyleSheet(sheetUrl){
+                var stylesheet = document.createElement('style');
+                stylesheet.textContent = '@import "' + sheetUrl + '"';
+
+                var timer = setInterval(function(){
+
+                    try {
+                        //console.log("checking sheet");
+                        stylesheet.sheet.cssRules; // <--- MAGIC: only populated when file is loaded
+                        fileLoaded();
+                        clearInterval(timer);
+                    } catch (e){}
+                }, 10);
+
+                document.getElementsByTagName('head')[0].appendChild(stylesheet);
+            }
+
+            var addCss = function(){
+
+                //console.log('adding style sheets');
+
+                //addStyleSheet("https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
+                //addStyleSheet("docs/css/font-awesome.css");
+
+                <!-- compiled CSS -->
+                <% styles.forEach( function ( file ) { %> addStyleSheet("<%= file %>"); <% }); %>
+            };
+
+        </script>
+
+    </head>
+
+  <body>
+
+      <div id="loadDiv">
+          <h1 id="loadingTitle"> AgBase </h1>
+          <div id="loadBar">
+              <img src="assets/img/cowSilhouetteGray.png">
+              <div id="loadBarProgress">
+                  <img src="assets/img/cowSilhouette.png" onload="addCss()">
+              </div>
+          </div>
+      </div>
+
+      <!-- Angular doesn't like it if we mess with the display properites of the ui-view div -->
+      <div id="mainWrapper">
+          <div ui-view="main" id="main"></div>
+      </div>
+
+
+      <!-- defer loading of js files and load them after the progress bar images-->
+      <!-- compiled JavaScript -->
+      <% scripts.forEach( function ( file ) { %>
+      <script type="text/javascript" src="<%= file %>" onload="fileLoaded()" defer></script>
+      <% }); %>
+
+  </body>
+
+</html>

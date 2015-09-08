@@ -1,0 +1,117 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Welcome to AgBase</h1><h5>Web App Version: {{ version }}. Built: {{ buildDate }}</h5>
+        <p>This is an alpha version of the AgBase web interface. Use this at your own risk, and be aware that as we
+           are continuously developing new features, things will change regularly.</p>
+        <p>Please choose from the applications and reports to your left. You can also browse the API documentation for the
+           AgBase analytics interface for measurements and data analysis.</p>
+        <p>AgBase is being developed by the Elec Research Group at the University of Otago. We welcome feedback, this
+           can be emailed to info@elec.ac.nz.</p>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<!--div class="row">
+    <div class="col-lg-12">
+        <img class="img-responsive" src="assets/img/weight_trend.png" alt="Weight Trend Graph">
+    </div>
+</div-->
+
+<div class="row" ng-repeat="farm in userFarms"><!-- farm data -->
+    <div class="panel panel-default">
+        
+        <div class="panel-heading">
+            <div class="huge">{{farm.farm.name}}</div>
+        </div>        
+        <div class="panel-body">           
+            
+            <div class="col-lg-4">
+                
+                <div class="panel panel-primary"><!-- farm pasture measurements panel -->
+                    <div class="panel-heading">
+                        <h4>Pasture Measurements</h4>                
+                        <p>
+                            <big><b>{{farm.pastureMeasurements.count? farm.pastureMeasurements.count: "0"}}</big></b>  total pasture measurements<br/>        
+                            
+                            <big><b>{{farm.pastureMeasurements.average && farm.pastureMeasurements.average > -1? round(farm.pastureMeasurements.average): "0"}}cm</big> </b> average pasture measurement<br/>        
+                            
+                            <big><b>{{farm.pastureMeasurements.longestName? farm.pastureMeasurements.longestName : ""}}</big></b>  has the longest pasture length with an average measurement length of 
+                            <big><b>{{farm.pastureMeasurements.longestValue? round(farm.pastureMeasurements.longestValue) : "0"}}cm</big></b> <br/>
+                            
+                            <big><b>{{farm.pastureMeasurements.shortestName? farm.pastureMeasurements.shortestName : ""}}</big></b>  has the shortest pasture length with an average  measurement length of
+                            <big><b>{{farm.pastureMeasurements.shortestValue? round(farm.pastureMeasurements.shortestValue) : "0"}}cm</big></b> <br/>        
+                            
+                            Last pasture measurements were taken <b>{{farm.pastureMeasurements.lastRecord? farm.pastureMeasurements.lastRecord: ""}}</b> days ago
+                        </p>
+                    </div>
+                </div><!-- end farm pasture measurements panel -->
+                
+            </div>
+            
+            <div class="col-lg-4">
+                
+                <div class="panel panel-green"><!-- farm weight measurement panel-->
+                    <div class="panel-heading">
+                        <h3>Weight</h3>                    
+                        <p>
+                            <big><b>{{farm.weightMeasurements.count? farm.weightMeasurements.count : "0"}}</big></b> total weight measurements
+                        </p>
+                        <h4>Last Weight Measurements</h4>
+                        <p>
+                            Last weight measurements were taken <b>{{farm.weightMeasurements.lastSet.lastRecord? farm.weightMeasurements.lastSet.lastRecord : ""}}</b> days ago<br/> 
+                             <big><b>{{farm.weightMeasurements.lastSet.count? farm.weightMeasurements.lastSet.count : "0"}}</big></b> measurements recorded<br/> 
+                             <big><b>{{farm.weightMeasurements.lastSet.average > -1?round(farm.weightMeasurements.lastSet.average) : "0"}}kg</big></b> average weight
+                        </p>
+                    </div>
+                </div><!-- end farm weight measurement panel -->
+                 
+                <div class="panel panel-red"><!-- condition score panel -->
+                    <div class="panel-heading">                
+                        <h3>Condition Scores</h3>
+                        <p>
+                            <big><b>{{farm.conditionScores.count? farm.conditionScores.count : "0"}}</big></b> total condition scores   
+                        </p>
+                        <h4>Last Condition Scores</h4>
+                        <p>
+                            Last condition scores were taken <b>{{farm.conditionScores.lastSet.lastRecord? farm.conditionScores.lastSet.lastRecord : ""}}</b> days ago<br/> 
+                             <big><b>{{farm.conditionScores.lastSet.count? farm.conditionScores.lastSet.count : "0"}}</big></b> scores recorded<br/> 
+                             <big><b>{{farm.conditionScores.lastSet.average > -1?round(farm.conditionScores.lastSet.average) : "0"}}</big></b> average score
+                        </p>
+                    </div>             
+                </div><!-- end farm condition score panel -->
+                
+            </div>
+            
+            <div class="col-lg-4">            
+                                                            
+                <div class="panel panel-primary"><!-- farm animal herd panel -->
+                    <div class="panel-heading">
+                        <h4>Herds</h4>
+                        <p>
+                            <big><b>{{farm.herds.count? farm.herds.count: "0"}}</big></b> total herds</br>
+                            <big><b>{{farm.herds.largestName? farm.herds.largestName : ""}}</big></b> is the largest herd with
+                            <big><b>{{farm.herds.largestValue? farm.herds.largestValue : "0"}}</big></b> animals<br/> 
+                            
+                            <big><b>{{farm.herds.smallestName? farm.herds.smallestName : ""}}</big></b> is the smallest herd with
+                            <big><b>{{farm.herds.smallestValue? farm.herds.smallestValue : "0"}}</big></b> animals  
+                        </p>
+                    </div>
+                </div>
+            
+                <div class="panel panel-yellow"><!-- farm animal panel -->
+                    <div class="panel-heading">
+                        <h4>Animals</h4>
+                        <p>
+                            <big><b>{{farm.animals.count? farm.animals.count: "0"}}</big></b> animals<br/>                            
+                        </p>
+                    </div>
+                </div><!-- end farm animal panel -->
+                
+            </div>
+            
+        </div>
+    </div>
+</div><!-- end farm data -->
+
+</div>

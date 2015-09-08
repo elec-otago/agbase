@@ -1,0 +1,229 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Pasture Analysis</h1>        
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <form>
+                    <!-- select farm -->
+                    <div class="form-group">
+                        <label>Farm</label>
+                        <select class="form-control" ng-change="changeFarm(import.farm)" ng-model="import.farm" ng-options="farm as farm.name for farm in userFarms" id="selectFarm">
+                            <option value="" selected>--Please Select Your Farm--</option>
+                        </select>
+                    </div>
+
+                    <!-- select paddock -->
+                    <div class="form-group">
+                        <label>Paddock</label>
+                            <select class="form-control" ng-change="newPaddockSelected(import.paddock)" ng-model="import.paddock" ng-change="setPaddock(import.paddock)" ng-options="paddock as paddock.name for paddock in paddocks" id="selectPaddock">
+                                <option value="" selected>--Please Select Your Paddock--</option>
+                            </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class=row>
+           <!-- Data View form column -->
+            <div class="col-lg-6">
+                <form>
+                    <h3>Data View</h3>
+
+                    <!-- select timespan -->
+                    <div class="form-group">                           
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <!-- start date datepicker -->                               
+                                <div class="dropdown">
+                                    <label>Start Date</label> 
+                                    <input type="text" class="form-control start-date-toggle" id="startDateDisplay" role="button" data-toggle="dropdown" placeholder="start date" style="cursor: none; background-color:white;" readonly>
+
+                                    <ul id="startDateUl" class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <datetimepicker
+                                                id="startDatePicker"
+                                                data-ng-model="startDate"
+                                                data-on-set-time="onStartDateSet(newDate, oldDate)"
+                                                data-before-render="onStartDateRender($view, $dates, $leftDate, $upDate, $rightDate)"
+                                                data-datetimepicker-config="{
+                                                    startView:'day',
+                                                    minView:'day',
+                                                    dropdownSelector: '.start-date-toggle'                                                    
+                                                }">
+                                        </datetimepicker>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- end date datepicker -->
+                            <div class="col-lg-6">
+                                <div class="dropdown">
+                                    <label>End Date</label>
+                                    <input type="text" class="form-control end-date-toggle" id="endDateDisplay" role="button" data-toggle="dropdown" placeholder="end date" style="cursor: none; background-color: white;" readonly>  
+
+                                    <ul id="endDateUl" class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <datetimepicker
+                                                id="endDatePicker"
+                                                data-ng-model="endDate"
+                                                data-on-set-time="onEndDateSet(newDate, oldDate)"
+                                                data-before-render="onEndDateRender($view, $dates, $leftDate, $upDate, $rightDate)"
+                                                data-datetimepicker-config="{
+                                                    startView:'day',
+                                                    minView:'day',
+                                                    dropdownSelector: '.end-date-toggle'                                                    
+                                                }">
+                                        </datetimepicker>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end select timespan -->
+
+                    <!-- buttons -->
+                    <div class="form-group">
+                        <!-- show data view button -->
+                        <button href="#" class="btn btn-success" ng-click="searchPastureMeasurementsBtnClick(import.paddock)" ng-disabled="!import.paddock">Search</button>
+                   </div>                    
+                </form>                
+            </div>
+
+            <!-- VRA Map form column -->
+            <div class="col-lg-6">
+                <form>
+                    <h3>VRA Map</h3>
+                    <!--file name entry input -->
+                    <div class="form-group">
+                        <label>Download as:</label>
+                        <input class="form-control ng-pristine ng-valid" type="text" ng-model="fileName">
+                    </div>
+
+                    <!-- buttons -->
+                    <div class="form-group">
+
+                        <!-- calculate button -->
+                        <button id="calculateVRAMapBtn"
+                            href="#" 
+                            class="btn btn-success" 
+                            ng-disabled="map.mapMarkers.length === 0" 
+                            data-toggle="modal" 
+                            data-target="#calculateSpreaderMapModal">
+                        Calculate
+                        </button>
+
+                        <!-- download csv button  -->
+                        <button id="downloadBtn" 
+                            class="btn btn-success" 
+                            ng-disabled="spreaderMap.length === 0" 
+                            filename="{{fileName}}.csv" 
+                            csv-header="csvFileHeader" 
+                            ng-csv="downloadCSVBtnClick()">
+                        Download as CSV
+                        </button>
+
+                        <!-- download shapefile button -->
+                        <button id="downloadShapefileBtn"
+                            class="btn btn-success"
+                            ng-disabled="spreaderMap.length === 0"
+                            ng-click="downloadShapeFileBtnClick()">
+                        Download Shapefile
+                        </button>
+                    </div>
+                </form>
+            </div><!-- end spreader map form column -->            
+        </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- map -->
+                <ui-gmap-google-map 
+                    center='map.center' 
+                    zoom='map.zoom'
+                    control="map.googleMap"
+                    zoom="map.zoom"
+                    events="map.mapEvents">
+
+                    <!--
+                    TODO This element needs access to it's parent scope to enable
+                        toggling layer visibility.
+                    -->
+                    <ui-gmap-map-control
+                        template="reports/pastureAnalysis/toggleLayer.tpl.html"
+                        position="RIGHT_CENTER"
+                        index="1"
+                        controller="layerToggleCtrl"></ui-gmap-map-control>
+                    <!-- layer for paddock area -->
+                    <ui-gmap-polygon
+                        path="paddock.polygonMarkers"
+                        visible="paddock.visible"
+                        stroke="paddock.stroke"
+                        fill="paddock.fill"
+                        static="paddock.static"></ui-gmap-polygon>
+                    <!-- layer for pasture measurement markers -->
+                    <ui-gmap-markers
+                        models="map.mapMarkers"
+                        idKey="'markerId'"
+                        coords="'position'"
+                        control="map.mapMarkers.control"
+                        options="'options'"></ui-gmap-markers>
+                    <!-- layer for spreader map -->
+                    <ui-gmap-layer
+                        namespace="visualization"
+                        type="HeatmapLayer"
+                        show="map.vraMapLayer.showHeat"
+                        onCreated="map.vraMapLayer.heatLayerCallback"
+                        options="map.vraMapLayer.heatMapOptions"></ui-gmap-layer>
+                        <ui-gmap-polygons
+                            models="map.vraMapPolygons"
+                            visible="map.visibleVRAMap"
+                            idKey="'id'"
+                            path="'polygonMarkers'"
+                            stroke="'stroke'"
+                            static="'static'"></ui-gmap-polygons>
+                </ui-gmap-google-map>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>
+                            Download the AgBase Pasture Meter app for Android to save your pasture measurements to our website
+                            <a href="https://play.google.com/store/apps/details?id=nz.ac.elec.moogle.pasturereader">
+                                <img alt="Get it on Google Play"
+                                    src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+
+        <!-- Spreader Map modal dialog -->
+        <div class="modal fade" ng-if="import.paddock != null" id="calculateSpreaderMapModal" tabindex="-1" role="dialog" aria-labelledby="displaySpreaderMapModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="addPermissionModalLabel">Calculate VRA Map</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label>Meter Resolution</label>
+
+                                <select ng-disabled="vraMapCalculating" id="selectResolution" class="form-control" ng-model="import.meterRes" ng-options="meterRes.display for meterRes in resolutions">
+                                    <option value="" selected>--Please Select Meter Resolution--</option>
+                                </select>
+                            </div> 
+                        </form>
+                        <p ng-if="vraMapFeedback">{{vraMapFeedback}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" ng-click="cancelVRAMapBtnClick()" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" ng-disabled="!import.meterRes || vraMapCalculating" ng-click="calculateVRAMapBtnClick(import)" type="submit">Calculate</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end Spreader Map modal dialog -->
+    </div>
+</div>

@@ -1,0 +1,155 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Global Roles Admin</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <p>These permissions define the global actions a user can perform i.e on data that does not belong to that user,
+            or that the user does not have farm permissions for.
+        </p>
+
+        <br>
+
+        <table>
+            <thead>
+            <tr><th>Key</th></tr>
+            </thead>
+            <tbody>
+            <tr><td><span class="glyphicon glyphicon-edit"></span></td><td>Edit, Create, Update entries</td></tr>
+            <tr><td><span class="glyphicon glyphicon-search"></span></td><td>View entries</td></tr>
+            </tbody>
+        </table>
+        <br>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Global Roles
+            </div>
+            <div class="panel-body">
+
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                        <tr>
+                            <th>Permission</th>
+                            <th ng-repeat="role in globalRoles"> {{role.name}} </th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <!--
+
+                        editAlgorithms: Seq.BOOLEAN, //can add/remove/update Algorithms
+                        viewAlgorithms: Seq.BOOLEAN, //can view measurement Algorithms
+                        editAnimals: Seq.BOOLEAN,   //can create/edit/remove Animals from anywhere
+                        viewAnimals: Seq.BOOLEAN,   //can view Animals from anywhere
+                        editFarms: Seq.BOOLEAN,     //can create/edit/remove farms
+                        viewFarms: Seq.BOOLEAN,     //can view other farms than ones the user is associated to
+                        editFarmRoles: Seq.BOOLEAN,     //can create/edit/remove farmRoles
+                        viewFarmRoles: Seq.BOOLEAN,     //can view all farm roles
+                        editGlobalRoles: Seq.BOOLEAN,   //can create/edit global roles
+                        viewGlobalRoles: Seq.BOOLEAN,   //can view all global roles
+                        editHerds: Seq.BOOLEAN,         //can create/edit/remove Herds from anywhere
+                        viewHerds: Seq.BOOLEAN,         //can view other Herds than ones in the farm the user is associated to
+                        editMeasurements: Seq.BOOLEAN,  //can add/remove/update measurements anywhere
+                        viewMeasurements: Seq.BOOLEAN,  //can view measurements anywhere
+                        editCategories: Seq.BOOLEAN,    //can add/remove/update measurement categories
+                        viewCategories: Seq.BOOLEAN,    //can view measurement categories
+                        editFarmPermissions: Seq.BOOLEAN,   //can edit all permissions
+                        viewFarmPermissions: Seq.BOOLEAN,   //can view all permissions
+                        editUsers: Seq.BOOLEAN,         //can add/remove/update users
+                        viewUsers: Seq.BOOLEAN         //can view other users
+
+                        -->
+
+                        <tr>
+                            <td>Algorithms</td>
+                            <td ng-repeat="role in globalRoles">
+                                <span class="glyphicon glyphicon-edit" ng-show="role.editAlgorithms"></span>
+                                <span class="glyphicon glyphicon-search" ng-show="role.viewAlgorithms"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Animals</td>
+                            <td ng-repeat="role in globalRoles">
+                                <span class="glyphicon glyphicon-edit" ng-show="role.editAnimals"></span>
+                                <span class="glyphicon glyphicon-search" ng-show="role.viewAnimals"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Farms</td>
+                            <td ng-repeat="role in globalRoles">
+                                <span class="glyphicon glyphicon-edit" ng-show="role.editFarms"></span>
+                                <span class="glyphicon glyphicon-search" ng-show="role.viewFarms"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Farm Roles</td>
+                            <td ng-repeat="role in globalRoles">
+                                <span class="glyphicon glyphicon-edit" ng-show="role.editFarmRoles"></span>
+                                <span class="glyphicon glyphicon-search" ng-show="role.viewFarmRoles"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Herds</td>
+                            <td ng-repeat="role in globalRoles">
+                                <span class="glyphicon glyphicon-edit" ng-show="role.editHerds"></span>
+                                <span class="glyphicon glyphicon-search" ng-show="role.viewHerds"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Global Roles</td>
+                            <td ng-repeat="role in globalRoles">
+                                <span class="glyphicon glyphicon-edit" ng-show="role.editGlobalRoles"></span>
+                                <span class="glyphicon glyphicon-search" ng-show="role.viewGlobalRoles"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Measurements</td>
+                            <td ng-repeat="role in globalRoles">
+                                <span class="glyphicon glyphicon-edit" ng-show="role.editMeasurements"></span>
+                                <span class="glyphicon glyphicon-search" ng-show="role.viewMeasurements"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Measurement Categories</td>
+                            <td ng-repeat="role in globalRoles">
+                                <span class="glyphicon glyphicon-edit" ng-show="role.editCategories"></span>
+                                <span class="glyphicon glyphicon-search" ng-show="role.viewCategories"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Farm Permissions</td>
+                            <td ng-repeat="role in globalRoles">
+                                <span class="glyphicon glyphicon-edit" ng-show="role.editFarmPermissions"></span>
+                                <span class="glyphicon glyphicon-search" ng-show="role.viewFarmPermissions"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Users</td>
+                            <td ng-repeat="role in globalRoles">
+                                <span class="glyphicon glyphicon-edit" ng-show="role.editUsers"></span>
+                                <span class="glyphicon glyphicon-search" ng-show="role.viewUsers"></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                 </div>
+           </div>
+        </div>
+    </div>
+</div>

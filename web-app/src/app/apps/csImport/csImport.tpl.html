@@ -1,0 +1,135 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Condition Scores Importer</h1>
+    </div>
+</div>
+<div class="row"><!-- main content row -->
+    <div class="col-lg-12"><!-- main content col -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">Condition Scores Importer</div>        
+            <div id="csImportPanelBody" class="panel-body">
+                
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6">
+                
+                            <form>
+                            
+                                <div class="form-group"><!-- farm select form group -->
+                                    <label>Farm</label>
+                                    <!--div class="panel panel-info">
+                                    <div class="panel-heading">Info</div>
+                                    <p>
+                                        The farm that the condition scores came from. Selecting this also allows you to chose the herd. These are used so that new animals will be added to the database in this farm/herd.
+                                    </p>
+                                    </div-->
+                                    <select class="form-control" ng-model="import.farm" ng-options="farm as farm.name for farm in userFarms" ng-change="changeFarm(import.farm)" id="selectFarm">
+                                        <option value="" selected>--Please Select Your Farm--</option>
+                                    </select>
+                                </div><!-- end farm select form group -->
+                                
+                                <div class="form-group"><!-- ng-show="herds.length"--><!-- herd select form group -->
+                                    <label>Herd</label> 
+                                    <!--div class="panel panel-info">
+                                    <div class="panel-heading">Info</div>
+                                    <p>
+                                        The Herd that the condition scores come from.
+                                    </p>
+                                    </div-->
+                                    <select class="form-control"  ng-model="import.herd" ng-options="herd as herd.name for herd in herds" ng-change="changeHerd(import.herd)" id="selectHerd">
+                                        <option value="" selected>--Please Select Your Herd--</option>
+                                    </select>
+                                </div><!-- end herd select form group -->
+                                
+                                <div class="form-group"><!-- measurement algorithm form group -->
+                                    <label>Measurement Type</label>
+                                    <select class="form-control" ng-model="import.algorithm" ng-options="algorithm as algorithm.name for algorithm in algorithms" ng-change="changeAlg(import.algorithm)" id="selectAlgorithm">
+                                        <option value="" selected>--Please Select Your Measurement Type--</option>
+                                    </select>
+                                </div><!-- end measurement algorithm form group -->
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group"><!-- date select form group -->
+                                            <label>Date</label>
+                                            <!--div class="panel panel-info">
+                                            <div class="panel-heading">Info</div>
+                                            <p>
+                                                Select the date that the animal conditions where scored.
+                                            </p>
+                                            </div-->
+                                            <div class="dropdown">
+                                                <a class="dropdown-toggle my-toggle-select" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                                                    <div class="input-append">
+                                                        <input id="dateDisplay" type="text" class="form-control end-date-toggle" data-ng-model="formatedDate">
+                                                        <span class="add-on">
+                                                            <i class="icon-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                    <datetimepicker
+                                                        id="datePicker"                                                        
+                                                        data-ng-model="date"
+                                                        data-on-set-time="onSetTime(newDate, oldDate)"
+                                                        data-datetimepicker-config="{ 
+                                                            startView:'day', 
+                                                            minView:'day', 
+                                                            dropdownSelector: '.my-toggle-select'}">
+                                                    </datetimepicker>
+                                                </ul>
+                                            </div>
+                                        </div><!-- end date select form group  input-large -->
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group"><!-- file path form group -->
+                                            <label>File Path</label>
+                                            <!--div class="panel panel-info">
+                                            <div class="panel-heading">Info</div>
+                                            <p>
+                                                Go to the location of the correctly formatted file on your computer.
+                                            </p>
+                                            </div-->
+                                            <br />
+                                            <span class="btn btn-default btn-file">
+                                                Browse<input type="file" id="file-input" accept=".csv" />
+                                            </span>
+                                            &nbsp;{{fileName}}
+                                        </div><!-- end file path form group -->
+                                    </div>
+                                </div>
+                                
+                                <div class="form-footer">               
+                                    <button type="submit" class="btn btn-success" ng-click="importData(import)">Submit</button>
+                                    <button type="reset" class="btn btn-danger">Reset</button> <label>{{comment? comment : ""}}</label>
+                                </div>                                                            
+                            </form> 
+                            <br />
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    CSV Upload Instructions
+                                </div>
+                                <div class="panel-body">
+                                    <p>    
+                                    To upload a CSV file to this website, the data needs to be formatted in a certain way as follows: *visual id*,*condition score*</p>
+                                    <p>
+                                    There should be no headings and each record should be on a new line. A file in this format can be exported by Microsoft Excel, Google Docs Spreadsheets and Libreoffice Spreadsheet 
+                                    </p>
+                                </div>
+                            </div>
+                        </div> 
+                        
+                        <div class="col-lg-6">
+                            <label>File Data</label>
+                            <ag-paged-table datasource="tableDataSource"></ag-paged-table>                            
+                        </div>
+                        
+                    </div><!-- end row -->                    
+                </div><!-- end container fluid -->                
+            </div><!-- end csImportPanelBody -->            
+        </div>
+    </div> <!-- end main content col -->
+</div><!-- end main content row -->
+
+
+
+

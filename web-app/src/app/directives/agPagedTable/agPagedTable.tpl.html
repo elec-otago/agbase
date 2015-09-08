@@ -1,0 +1,69 @@
+<div class="agPagedTableDirective" ng-controller="AgPagedTableController">
+
+    <div class="agPagedTableLoading" ng-show="shouldShowLoading">
+            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+    </div>
+
+    <div id="agPagedTableEmptyMessage" class="alert alert-info" ng-show="shouldShowEmptyMessage">
+        {{dataSource.tableEmptyMessage}}
+    </div>
+
+    <div class="agPagedTableWrapper" ng-show="shouldShowWrapper">
+
+        <div class="agPagedTableMenu" ng-show="shouldShowMenu">
+
+             <button ng-repeat="buttonDescriptor in menuButtons" ng-disabled="buttonDescriptor.disabled" ng-click="menuButtonClick(buttonDescriptor)" class="btn btn-default" ng-class="buttonDescriptor.styles.class">
+                    {{buttonDescriptor.text}}
+             </button>
+
+        </div>
+
+        <table class="agPagedTable table table-striped table-bordered table-hover table-responsive" ng-show="shouldShowTable">
+            <thead>
+                <tr>
+                    <td ng-if="dataSource.hasMultiSelect" class="agPagedTableSelectColumn">
+                        <input ng-model="selectAllCheckBox.isChecked" ng-change="selectAllCheckBoxToggled(selectAllCheckBox.isChecked)" type="checkbox">
+                    </td>
+                    <td ng-repeat="column in dataSource.columns" ng-class="column.styles.class">
+                        {{column.name}}
+                    </td>
+                    <td ng-if="dataSource.rowActionButtons && dataSource.rowActionButtons.length" class="agPagedTableActionColumn">Action</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="rowModel in rowModels">
+                    <td ng-if="dataSource.hasMultiSelect">
+                        <input ng-model="rowModel.isSelected" ng-change="selectionChanged(rowModel)" type="checkbox">
+                    </td>
+                    <td ng-repeat="column in dataSource.columns" ng-class="column.styles.class">
+                        {{extractParameter(rowModel, column.dataProperty)}}
+                    </td>
+
+                    <td ng-if="dataSource.rowActionButtons && dataSource.rowActionButtons.length" class="agPagedTableActionColumn">
+
+                        <ag-action-button ng-repeat="actionItem in dataSource.rowActionButtons"
+                            type="actionItem.type"
+                            action="actionButtonClicked(actionItem, rowModel)"
+                            disable="actionItem.disablePromise? rowModel.disable: actionItem.disable">
+                        </ag-action-button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="pageControl">
+
+            <div class="btn-group">
+                <button type="button" ng-class="{'active':maxRows == 10}" ng-click="setMaxRows(10)" class="btn btn-default">10</button>
+                <button type="button" ng-class="{'active':maxRows == 25}" ng-click="setMaxRows(25)" class="btn btn-default" >25</button>
+                <button type="button" ng-class="{'active':maxRows == 50}" ng-click="setMaxRows(50)" class="btn btn-default" >50</button>
+                <button type="button" ng-class="{'active':maxRows == 100}" ng-click="setMaxRows(100)" class="btn btn-default">100</button>
+            </div>
+
+            <div id="pager">
+                <pagination total-items="rowCount" items-per-page="maxRows" max-size="10" boundary-links="true" ng-model="currentPage" ng-change="pageChanged(currentPage)"></pagination>
+            </div>
+
+        </div>
+    </div> <!-- agPagedTableWrapper-->
+</div> <!-- agPagedTable -->

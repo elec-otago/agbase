@@ -1,0 +1,117 @@
+<div class="table-responsive">
+    <table id="herdTable" class="table table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Animal Count</th>
+            <th ng-if="userPermissions.editFarmHerds">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="herd in farmHerds">
+            <td>{{herd.name}}</td>
+            <td>{{herd.count}}</td>
+
+            <td ng-if="userPermissions.editFarmHerds">
+                <button class="btn btn-danger btn-xs" ng-click="openDeleteHerd(herd)"><span class="glyphicon glyphicon-trash"></span></button>
+                <button class="btn btn-success btn-xs" ng-click="openHerdEdit(herd)" ><span class="glyphicon glyphicon-edit"></span></button>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div id="herdSpinner" class="has-spinner" class="parentPageSpinner">
+        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" class="childPageSpinner"></span>
+    </div>
+</div>
+<!-- /.table-responsive -->
+
+<a ng-if="userPermissions.editFarmHerds" href="#" class="btn btn-success" data-toggle="modal" data-target="#createHerdModal">Create Herd</a>
+
+<!-- Create Herd Modal -->
+<div class="modal fade" id="createHerdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="createHerdModalLabel">Create a herd in {{farm.name}}</h4>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <label>Herd Name</label>
+
+                    <input type="text" class="form-control" ng-model="herd.name">
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" ng-click="createHerd(herd.name)">Create Herd</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Delete confirmation Modal -->
+<div class="modal fade" id="deleteHerdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="deleteHerdModalLabel">Delete Herd</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Are you sure you want to remove the herd <em>{{editHerd.name}}</em> ?</label><br/>
+                    </div>
+                    <div class="form-group">
+                        <label>Remove animals in herd</label>
+                        <input type="checkbox" ng-model="deleteHerdAnimals" id="deleteAnimalsCheckbox">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" ng-click="deleteSelectedHerd(editHerd, deleteHerdAnimals)">Delete Herd</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+   </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Edit Herd Modal -->
+<div class="modal fade" id="editHerdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="editHerdModalLabel">Edit herd name</h4>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <div class="form-group">
+                        <label>Herd name</label>
+                        <input class="form-control" id="editHerdInputName" type="text"  ng-model="herd.name">
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" ng-click="saveEditedHerd(editHerd, herd.name)">Save Herd</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

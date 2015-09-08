@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please Sign In</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <div ng-show="loginFailed">Incorrect email address or password.</div>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Email" name="email" type="email"  ng-model="user.email" id="inputEmail" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" name="password" type="password" value="" ng-model="user.password" id="inputPassword">
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="remember" id="rememberMe" type="checkbox" value="Remember Me">Login automatically
+                                </label>
+                            </div>
+                            <button class="btn btn-lg btn-success btn-block" ng-click="signIn(user.email, user.password)">Login</button>
+                            <button class="btn btn-lg btn-warning btn-block" ng-click="signIn('demo@agbase.elec.ac.nz', 'wowdemo')">Guest Login</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,243 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Spatial Data</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Spatial Data
+            </div>           
+            <div class="panel-body">
+                <div class="row">                    
+                    <div class="col-lg-6">
+                        <form>
+                            <h3>View</h3>
+                            <!-- select farm -->
+                            <div class="form-group">
+                                <label>Farm</label>
+                                <select class="form-control" id="selectFarm"
+                                        ng-change="onSelectFarm(viewImport.farm)" ng-model="viewImport.farm" 
+                                        ng-options="farm as farm.name for farm in viewFarms">
+                                    <option value="" selected>--Please Select Your Farm--</option>
+                                </select>
+                            </div>
+
+                            <!-- select paddock -->
+                            <div class="form-group">
+                                <label>Paddock</label>
+                                <select class="form-control" id="selectPaddock"
+                                        ng-change="onSelectPaddock(viewImport.paddock)" ng-model="viewImport.paddock"
+                                        ng-options="paddock as paddock.name for paddock in viewPaddocks">
+                                    <option value="" selected>--Please Select Your Paddock--</option>
+                                </select>
+                            </div>
+                            <!--select category -->
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select class="form-control" id="selectCategory"
+                                        ng-change="onSelectCategory(viewImport.category)" ng-model="viewImport.category"
+                                        ng-options="category as category.name for category in viewCategories">
+                                    <option value="" selected>--Please Select Your Category--</option>
+                                </select>
+                            </div>
+
+                            <!-- select algorithm -->
+                            <div class="form-group">
+                                <label>Algorithm</label>
+                                <select class="form-control" id="selectAlgorithm" ng-model="viewImport.algorithm"
+                                        ng-options="algorithm as algorithm.name for algorithm in viewAlgorithms">
+                                    <option value="" selected>--Please Select Your Algorithm--</option>
+                                </select>
+                            </div>                                                                 
+                            <!-- select timespan -->
+                            <div class="form-group">                           
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <!-- start date datepicker -->                               
+                                        <div class="dropdown">
+                                            <label>Start Date</label> 
+                                            <input type="text" class="form-control start-date-toggle" id="startDateDisplay" role="button" data-toggle="dropdown" placeholder="start date" style="cursor: none; background-color:white;" readonly>                             
+                                            
+                                            <ul id="startDateUl" class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                <datetimepicker 
+                                                        id="startDatePicker"
+                                                        data-ng-model="startDate"                                                
+                                                        data-on-set-time="onStartDateSet(newDate, oldDate)"
+                                                        data-before-render="onStartDateRender($view, $dates, $leftDate, $upDate, $rightDate)"
+                                                        data-datetimepicker-config="{
+                                                            startView:'day', 
+                                                            minView:'day', 
+                                                            dropdownSelector: '.start-date-toggle'
+                                                        }">
+                                                </datetimepicker>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- end date datepicker -->
+                                    <div class="col-lg-6">
+                                        <div class="dropdown">
+                                            <label>End Date</label>
+                                            <input type="text" class="form-control end-date-toggle" id="endDateDisplay" role="button" data-toggle="dropdown" placeholder="end date" style="cursor: none; background-color: white;" readonly>  
+                                            <ul id="endDateUl" class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                <datetimepicker 
+                                                        id="endDatePicker"
+                                                        data-ng-model="endDate"                                                
+                                                        data-on-set-time="onEndDateSet(newDate, oldDate)"
+                                                        data-before-render="onEndDateRender($view, $dates, $leftDate, $upDate, $rightDate)"
+                                                        data-datetimepicker-config="{
+                                                            startView:'day',
+                                                            minView:'day', 
+                                                            dropdownSelector: '.end-date-toggle'
+                                                        }">
+                                                </datetimepicker>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>                        
+                            </div><!-- end select timespan -->
+                            <!-- display paddock when either 1 or more farms are selected -->
+                            <div class="form-footer">               
+                                <!-- Button display readings -->
+                                <button type="submit" class="btn btn-success" ng-click="onClickView(viewImport)">View</button>     
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-6">
+                        <form ng-show="manageFarms.length > 0">
+                            <h3>Upload Csv</h3>
+                            <!-- select farm -->
+                            <div class="form-group">
+                                <label>Farm</label>
+                                <select class="form-control" id="selectFarmCsv"
+                                        ng-change=updateCsvPaddockList(manageFarms.farm) ng-model="manageFarms.farm" ng-options="farm as farm.name for farm in manageFarms" id="selectFarmUpload">
+                                    <option value="" selected>--Please Select Your Farm--</option>
+                                </select>
+                            </div>
+                        
+                            <!-- select paddock -->
+                            <div class="form-group">
+                                <label>Paddock</label>
+                                <select class="form-control" id="selectPaddockCsv"
+                                        ng-change="selectPaddock(csvImport.paddock)" ng-model="csvImport.paddock" ng-options="paddock as paddock.name for paddock in csvPaddocks" id="selectPaddockUpload">
+                                    <option value="" selected>--Please Select Your Paddock--</option>
+                                </select>
+                            </div>
+                            <!-- csv file format explaination -->
+                            <div class="panel panel-info">
+                                <div class="panel-heading">File format</div>
+                                <div class="panel-body">
+                                    <p>
+                                        Each row in the csv file should contain data
+                                        in following order: <br>
+                                        length, latitude, longitude, altitude, date of measurement
+                                    </p>
+                                    <p>
+                                        There should be no headings and each record should be on a new line.
+                                        A file in this format can be exported by Microsoft Excel,
+                                        Google Docs Spreadsheets and Libreoffice Spreadsheet
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- select csv file -->
+                            <div class="form-group">
+                                <span class="btn btn-default btn-file">
+                                    Browse<input type="file" id="getFileBtn" accept=".csv" />
+                                </span>
+                                &nbsp;{{csvFile.name}}
+                            </div>
+                            <!-- upload csv file -->
+                            <div class="form-group">
+                                <button id="uploadBtn" class="btn btn-primary" ng-click="uploadFile(csvImport)">Upload Csv</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- google map -->
+                <div class="row">
+                    <div class="col-lg-12" ng-show='map.mapMarkers.length > 0'>
+                        Found {{map.mapMarkers.length}} results
+                    </div>
+                    <div class="col-lg-12">
+                        <!-- map -->
+                        <ui-gmap-google-map
+                            id="displayMap"
+                            control="map.googleMap"
+                            center='map.center'
+                            zoom='map.zoom'
+                            events="map.mapEvents">
+                            <ui-gmap-markers
+                                models="map.mapMarkers"
+                                idKey="'markerId'"
+                                coords="'position'"
+                                options="'options'"
+                                click="'onClick'"
+                                events="map.markerEvents">                                
+                            </ui-gmap-markers>
+                        </ui-gmap-google-map>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>
+                            Download the AgBase Pasture Meter app for Android to save your pasture measurements to our website
+                            <a href="https://play.google.com/store/apps/details?id=nz.ac.elec.moogle.pasturereader">
+                                <img alt="Get it on Google Play"
+                                    src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- delete spatial measurement modal dialog -->
+    <div class="modal fade" 
+        id="deleteSpatialDataModal" tabindex="-1" role="dialog" aria-labelledby="spatialDataModal" aria-hidden="true">
+            
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="addPermissionModalLabel">Delete Spatial Measurement</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p> Are you sure you want to delete this measurement? </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-danger"  ng-click="deleteFocused()" type="submit" data-dismiss="modal">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end Spatial modal dialog -->
+
+      <!-- edit spatial measurement modal dialog -->
+    <div class="modal fade" 
+        id="editSpatialDataModal" tabindex="-1" role="dialog" aria-labelledby="spatialDataModal" aria-hidden="true">            
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="addPermissionModalLabel">Edit Spatial Measurement</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Length</label>
+                            <select class="form-control"
+                                    id="selectSpatialLength"
+                                    ng-model="selectedLength"
+                                    ng-options="len.display for len in measurementLengths">                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-success" ng-click="updateMeasurement()" type="submit" data-dismiss="modal">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end Spatial modal dialog -->
+</div>

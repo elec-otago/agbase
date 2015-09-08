@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Weight Trends Graph</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+        
+            <div class="panel-heading">Weight Trends Graph</div>        
+            
+            <div class="panel-body">
+             
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3 class="text-center">Weight Trend</h3>
+                    </div>
+                </div> 
+                
+                <div class="row">         
+                    
+                    <wt-chart 
+                        ng-model='data' 
+                        id="placeholder" 
+                        class="col-lg-8 flot-chart">
+                    </wt-chart>
+                
+                    <div class="col-lg-4">        
+                        <div class="form-group">
+                            <label for="selectAlgorithm">Algorithm</label>
+                            <select 
+                                id="selectAlgorithm"
+                                class="form-control" 
+                                ng-model="algorithm" 
+                                ng-options="algorithm as algorithm.name for algorithm in algorithms" 
+                                ng-change="changeAlgorithm(algorithm)">
+                                <option value="" selected>--Please Select Your Algorithm--</option>
+                            </select>
+                        </div>
+        
+                        <div class="panel panel-info"><!-- animal info panel -->                
+                            <div class="panel-heading">Animal Details</div>                
+                            <div class="panel-body"><!-- animal info panel body -->                            
+                                <p><label>Eid:</label> {{animal.eid}}</p>
+                                <p><label>Vid:</label> {{animal.vid}}</p>
+                                <p><label>Weight Algorithm:</label> {{algorithm? algorithm.name: ""}}</p>                                    
+                            </div><!-- end animal info panel body -->                            
+                        </div><!-- end animal info panel -->
+                    </div>                        
+                </div>
+            
+            </div> <!-- end primary panel body -->
+            
+        </div><!-- end panel primary -->
+    </div><!-- end main content col -->
+</div><!-- end main content row -->

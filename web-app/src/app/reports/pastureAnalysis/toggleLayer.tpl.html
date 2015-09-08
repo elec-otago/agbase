@@ -1,0 +1,35 @@
+<div>
+    <strong>Display Layers</strong>
+    <br>
+    <label>
+        <input ng-model='cbToggleMeasurements' 
+            type='checkbox' 
+            ng-change='togglePastureMeasurements()' 
+            ng-init='cbToggleMeasurements=true'>
+        Measurements
+    </label>
+    <br>
+    <label>
+        <input ng-model='cbTogglePaddock' 
+            type='checkbox' 
+            ng-change='togglePaddockBorder()' 
+            ng-init='cbTogglePaddock=true'>
+        Paddock
+    </label>
+    <br>
+    <label>
+        <input ng-model='cbToggleHeatMap' 
+            type='checkbox' 
+            ng-change='toggleHeatMap()' 
+            ng-init='cbToggleHeatMap=true'>
+        Heat Map
+    </label>
+    <br>
+    <label>
+        <input ng-model='cbToggleVRAMap'
+            type='checkbox'
+            ng-change='toggleVRAMap()'
+            ng-init='cbToggleVRAMap=true'>
+        VRA Map
+    </label>
+</div>

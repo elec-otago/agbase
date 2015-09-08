@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Farm Roles Admin</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <p>These permissions define the actions a user can perform on a farm for which the user has been given a role.
+        </p>
+
+        <br>
+
+        <table>
+            <thead>
+            <tr><th>Key</th></tr>
+            </thead>
+            <tbody>
+            <tr><td><span class="glyphicon glyphicon-edit"></span></td><td>Edit, Create, Update entries</td></tr>
+            <tr><td><span class="glyphicon glyphicon-search"></span></td><td>View entries</td></tr>
+            </tbody>
+        </table>
+        <br>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Farm Roles
+            </div>
+            <div class="panel-body">
+
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Permissions</th>
+                            <th>Herds</th>
+                            <th>Animals</th>
+                            <th>Measurements</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <tr ng-repeat="role in farmRoles">
+                            <td>{{role.id}}</td>
+                            <td>{{role.name}}</td>
+                            <td>
+                                <span class="glyphicon glyphicon-edit" ng-show="role.editFarmPermissions"></span>
+                                <span class="glyphicon glyphicon-search" ng-show="role.viewFarmPermissions"></span>
+                            </td>
+                            <td>
+                                <span class="glyphicon glyphicon-edit" ng-show="role.editFarmHerds"></span>
+                                <span class="glyphicon glyphicon-search" ng-show="role.viewFarmHerds"></span>
+                            </td>
+                            <td>
+                                <span class="glyphicon glyphicon-edit" ng-show="role.editFarmAnimals"></span>
+                                <span class="glyphicon glyphicon-search" ng-show="role.viewFarmAnimals"></span>
+                            </td>
+                            <td>
+                                <span class="glyphicon glyphicon-edit" ng-show="role.editFarmMeasurements"></span>
+                                <span class="glyphicon glyphicon-search" ng-show="role.viewFarmMeasurements"></span>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                 </div>
+           </div>
+        </div>
+    </div>
+</div>

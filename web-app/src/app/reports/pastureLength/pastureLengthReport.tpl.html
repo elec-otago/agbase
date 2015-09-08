@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Pasture Length Report</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="row">
+            <form>
+            <div class="col-lg-6">
+                <!-- select farm -->
+                <div class="form-group">
+                    <label>Farm</label>
+                    <select class="form-control" ng-change=updatePaddockList(import.farm) ng-model="import.farm" ng-options="farm as farm.name for farm in farms" id="selectFarm">
+                        <option value="" selected>--Please Select Your Farm--</option>
+                    </select>
+                </div>
+
+                <!-- select paddock -->
+                <div class="form-group"><!-- ng-show="paddocks.length"-->
+                    <label>Paddock</label>
+                        <select class="form-control" ng-change="importData(import)" ng-model="import.paddock" ng-options="paddock as paddock.name for paddock in paddocks" id="selectPaddock">
+                            <option value="" selected>--Please Select Your Paddock--</option>
+                        </select>
+                </div>
+                <!-- buttons -->
+                <div class="form-group">
+                    <!-- calculate spreader map -->
+                        <button href="#" class="btn btn-success" data-toggle="modal" data-target="#displaySpreaderMapModal">Display</button>
+                        
+                    <!-- import spreader map -->
+                        <button class="btn btn-success" ng-click="importSpreaderMap(import.paddock)" type="submit">Import</button>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <!-- TODO add layer selection -->
+            </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+            <!-- map -->
+            <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+            <ui-gmap-layer namespace="visualization" type="HeatmapLayer" show="true" onCreated="map.heatLayerCallback" options="map.heatMapOptions"></ui-gmap-layer>
+
+            </ui-gmap-google-map>
+            </div>
+        </div>
+        <!-- Spreader Map modal dialog -->
+        <div class="modal fade" ng-if="import.paddock != null" id="displaySpreaderMapModal" tabindex="-1" role="dialog" aria-labelledby="displaySpreaderMapModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="addPermissionModalLabel">Spreader Map settings</h4>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label>Meter Resolution</label>
+                                <select class="form-control" ng-model="import.meterRes" ng-options="meterRes.value for meterRes in resolutions">
+                                    <option value="" selected>--Please Select Meter Resolution--</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" ng-click="displaySpreaderMap(import)" type="submit">Calculate</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div><!-- end Spreader Map modal dialog -->
+    </div>
+</div>
+
+        

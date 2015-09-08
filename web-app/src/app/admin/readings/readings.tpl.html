@@ -1,0 +1,145 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Spatial Readings Admin</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+           
+           <div class="panel-heading">
+                Readings
+            </div>
+            <div class="panel-body">
+                
+                
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form role="form"><!-- form container -->
+                            <!-- select farm -->
+                            <div class="form-group">
+                                <label>Farm</label>
+                                <select class="form-control" id="selectFarm"
+                                        ng-model="selection.farmId" ng-options="farm.id as farm.name for farm in farms" ng-change="updatePaddockList(selection.farmId)" id="selectFarm">
+                                    <option value="" selected>--Please Select Your Farm--</option>
+                                </select>
+                            </div>
+                    
+                            <!-- select paddock -->
+                            <div class="form-group">
+                                <label>Paddock</label>
+                                <select class="form-control" id="selectPaddock"
+                                        ng-model="selection.paddockId" ng-options="paddock._id as paddock.name for paddock in paddocks" id="selectPaddock">
+                                    <option value="" selected>--Please Select Your Paddock--</option>
+                                </select>
+                            </div>
+                            <!--select category -->
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select class="form-control" id="selectCategory"
+                                        ng-change="onSelectCategory(selection.category)" ng-model="selection.category"
+                                        ng-options="category as category.name for category in viewCategories">
+                                    <option value="" selected>--Please Select Your Category--</option>
+                                </select>
+                            </div>
+
+                            <!-- select algorithm -->
+                            <div class="form-group">
+                                <label>Algorithm</label>
+                                <select class="form-control" id="selectAlgorithm" ng-model="selection.algorithm"
+                                        ng-options="algorithm as algorithm.name for algorithm in viewAlgorithms">
+                                    <option value="" selected>--Please Select Your Algorithm--</option>
+                                </select>
+                            </div>
+                            <!-- select timespan -->
+                            <div class="form-group">                           
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <!-- start date datepicker -->                               
+                                        <div class="dropdown">
+                                            <label>Start Date</label> 
+                                            <input type="text" class="form-control start-date-toggle" id="startDateDisplay" role="button" data-toggle="dropdown" placeholder="start date" style="cursor: none; background-color:white;" readonly>                             
+                                            
+                                            <ul id="startDateUl" class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                <datetimepicker 
+                                                        id="startDatePicker"
+                                                        data-ng-model="startDate"                                                
+                                                        data-on-set-time="onStartDateSet(newDate, oldDate)"
+                                                        data-before-render="onStartDateRender($view, $dates, $leftDate, $upDate, $rightDate)"
+                                                        data-datetimepicker-config="{
+                                                            startView:'day', 
+                                                            minView:'day', 
+                                                            dropdownSelector: '.start-date-toggle'
+                                                        }">
+                                                </datetimepicker>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- end date datepicker -->
+                                    <div class="col-lg-6">
+                                        <div class="dropdown">
+                                            <label>End Date</label>
+                                            <input type="text" class="form-control end-date-toggle" id="endDateDisplay" role="button" data-toggle="dropdown" placeholder="end date" style="cursor: none; background-color: white;" readonly>  
+                                            <ul id="endDateUl" class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                <datetimepicker 
+                                                        id="endDatePicker"
+                                                        data-ng-model="endDate"                                                
+                                                        data-on-set-time="onEndDateSet(newDate, oldDate)"
+                                                        data-before-render="onEndDateRender($view, $dates, $leftDate, $upDate, $rightDate)"
+                                                        data-datetimepicker-config="{
+                                                            startView:'day',
+                                                            minView:'day', 
+                                                            dropdownSelector: '.end-date-toggle'
+                                                        }">
+                                                </datetimepicker>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>   
+                            
+                            <!-- submit button -->
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success" ng-click="onClickShow(selection)">Show</button>
+                            </div>  
+                        </form><!-- end form container -->
+                    </div>
+                </div>
+                <!-- table container -->
+                <div class="row">
+                    <div class="col-lg-9">      
+                        
+                            <div class="table-responsive">
+                                <table class="table table-condensed table-hover">
+                                        
+                                    <thead>
+                                        <tr>
+                                            <th>Length</th>
+                                            <th>Latitude</th>
+                                            <th>Longitude</th>
+                                            <th>Created</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr ng-repeat="reading in readings">
+                                            <td>{{reading.length}}</td>
+                                            <td>{{reading.location.latitude}}</td>
+                                            <td>{{reading.location.longitude}} </td>
+                                            <td>{{getDate(reading.created)}} </td>
+                                            <td>
+                                                <button class="btn btn-danger btn-xs" ng-click="deleteReading(reading.id)"><span class="glyphicon glyphicon-trash"></span></button>
+    <!--                                            <button class="btn btn-success btn-xs" ><span class="glyphicon glyphicon-edit"></span></button> -->
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>                          
+                        </div>        
+                    </div> <!-- end table container -->
+              </div><!-- end panel body -->
+        </div><!-- end panel primary -->
+    </div>
+</div>

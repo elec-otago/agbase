@@ -1,0 +1,38 @@
+<!-- Page Header -->
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="panel panel-default" style="margin-top: 20px;">
+            <div class="panel-heading">
+                {{farm.name}}
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body" style="min-height: 450px;">
+
+                <ul class="nav nav-tabs">
+                    <li ui-sref-active="active">
+                        <a href="#" ui-sref="home.farm.members">Farm Members</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a href="#" ui-sref="home.farm.herds">Herds</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a href="#" ui-sref="home.farm.animals">Animals</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a href="#" ui-sref="home.farm.paddocks">Paddocks</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade active in" ui-view="farm-tab-content" style="padding-top: 10px;"></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+

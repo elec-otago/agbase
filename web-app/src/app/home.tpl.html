@@ -1,0 +1,187 @@
+<div id="wrapper">
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" ng-click="goToLanding()">AgBase <em class="text-danger">alpha</em></a>
+        
+    </div>
+    <!-- /.navbar-header -->
+    
+    <ul class="nav navbar-top-links navbar-right">
+    
+        <!-- /.dropdown -->
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                {{userFullName}} <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+                <li><a ui-sref="home.profile" href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                </li>
+                <li><a ui-sref="home.settings" href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                </li>
+                <li class="divider"></li>
+                <li><a ng-click="logOut()" href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                </li>
+            </ul>
+            <!-- /.dropdown-user -->
+        </li>
+        <!-- /.dropdown -->
+    </ul>
+    <!-- /.navbar-top-links -->
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+
+                <li>
+                    <a ui-sref-active="active" ui-sref="home.dashboard" href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                </li>
+
+                <li ng-show="userFarms.length > 1">
+                    <a href="#"><i class="fa fa-paw fa-fw"></i> Farms<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li ng-repeat="farm in userFarms">
+                            <a ng-class="{active: $state.includes('farm')}" ui-sref="home.farm({farmId:farm.id})" href="#">{{farm.name}}</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li ng-show="userFarms.length == 1">
+                    <a ng-class="{active: $state.includes('farm')}" ui-sref="home.farm({farmId:firstUserFarm.id})" href="#"><i class="fa fa-paw fa-fw"></i> {{firstUserFarm.name}}</a>
+                </li>
+
+                <li>
+                    <a href="#"><i class="fa fa-puzzle-piece fa-fw"></i> Apps<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a ui-sref="home.apps-csImport" href="#">Condition Score Importer</a>
+                        </li>
+ <!--                       <li>
+                            <a ui-sref="home.apps-manualImport" href="#">Manual Weight Adder</a>
+                        </li>-->
+                        <li>
+                            <a ui-sref="home.apps-conditionScorer" href="#">Condition Scorer</a>
+                        </li>
+                        <li>
+                            <a ui-sref="home.apps-spatialData" href="#">Spatial Data</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Reports<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a ui-sref="home.reports.weightTrend" href="#">Weight Trend</a>
+                        </li>
+                        <li>
+                            <a ui-sref="home.reports.conditionScores" href="#">Condition Scores</a>
+                        </li>
+                        <li>
+                            <a ui-sref="home.reports.pastureAnalysis" href="#">Pasture Analysis</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+
+                <li> <!--   <li ng-show="isAdmin">-->
+                    <a href="#"><i class="fa fa-code fa-fw"></i> Documentation<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a ng-click="openAPIDocs()" href="#">API Docs</a>
+                        </li>
+<!--                        <li>
+                            <a ng-click="openNgDocs()" href="#">Web App Docs</a>
+                        </li>-->
+                        <li class="divider"></li>
+<!--                        <li>
+
+                            <a ui-sref="home.reports-conditionScores" href="#">Condition Scores</a>
+                        </li>-->
+<!--                        <li>
+                            <a ui-sref="home.reports-pastureLength" href="#">Pasture Length Report</a>
+                        </li>                        -->
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li ng-show="isAdmin">
+                    <a href="#"><i class="fa fa-wrench fa-fw"></i> Developer Information<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a ng-click="openNgDocs()" href="#">Web App Docs</a>
+                        </li>
+                    </ul>
+                </li>
+                <li ng-show="isAdmin">
+                    <a href="#"><i class="fa fa-wrench fa-fw"></i> Administration<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a ui-sref="home.admin-farms" href="#">Farms</a>
+                        </li>
+                        <li>
+                            <a ui-sref="home.admin-herds" href="#">Herds</a>
+                        </li>
+                        <li>
+                            <a ui-sref="home.admin-animals" href="#">Animals</a>
+                        </li>
+                        <li>
+                            <a ui-sref="home.admin-paddocks" href="#">Paddocks</a>
+                        </li>
+                        <li>
+                            <a ui-sref="home.admin-users" href="#">Users</a>
+                        </li>
+                        <li>
+                            <a ui-sref="home.admin-usageTiers" href="#">Usage Tiers</a>
+                        </li>
+                        <li>
+                            <a ui-sref="home.admin-globalRoles" href="#">Global Roles</a>
+                        </li>
+                        <li>
+                            <a ui-sref="home.admin-farmRoles" href="#">Farm Roles</a>
+                        </li>
+                        <li>
+                            <a ui-sref="home.admin-farmPermissions" href="#">Farm Permissions</a>
+                        </li>
+                        <li>
+                            <a ui-sref="home.admin-categories" href="#">Measurement Categories</a>
+                        </li>
+                        <li>
+                            <a ui-sref="home.admin-algorithms" href="#">Algorithms</a>
+                        </li>
+                        <li>
+                            <a ui-sref="home.admin-measurements" href="#">Measurements</a>
+                        </li>
+                        <li>
+                            <a ui-sref="home.admin-readings" href="#">Spatial Readings</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="ProgressModal" tabindex="-1" role="dialog" aria-labelledby="ProgressModal" aria-hidden="true" style="">
+        <div class="has-spinner parentPageSpinner">
+            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate childPageSpinner"></span>
+        </div>
+    </div>
+    <!-- /.modal -->
+</nav>
+
+<div id="page-wrapper" ui-view="home-content"></div>
+
+</div>
+<!-- /#wrapper -->

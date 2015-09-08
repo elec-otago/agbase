@@ -1,0 +1,83 @@
+/*
+ * AgBase Paged Table
+ * Written by Matt Madigan
+ *
+ * agPagedTable is an html tag that can be used to create paged tables.
+ *
+ * As this tag is the only tag required to set up the table, there is some setup required in javascript.
+ * This readme is here to help you get through the set up of the paged table easily.
+ *
+ * Below is the javascript structure of the datasource object:
+ */
+
+/*
+ * This is our tableSettings object that defines all of the settings our table will use.
+ */
+var tableSettings = {
+    /*
+     * The columns property is an array. This array will contain objects containing the settings for each column.
+     */
+    columns: [
+        /*
+         * This is a column settings object.
+         */
+        {
+            columnName: "columnName",           // The columnName is the name that will be displayed at the top of the table. This property is expected to be a string.
+            columnDataProperty: "propertyName", // The columnDataProperty is the name of the property you wish to access in your dataSource. This property will be displayed in this column.
+            sortable:   true,                   // OPTIONAL - This declares the column to be a sortable column. You may not declare this property and the default of false will be used instead.
+            filterable: true,                   // OPTIONAL - This declares the column to be a filterable column. You may not declare this property and the default of false will be used instead.
+            classes:    "addedColumnClasses",   // OPTIONAL - This is where you can declare the column to use an additional CSS class that you require.
+            actionsColumn: true,                // OPTIONAL - This is a flag that you need to use if you want the column to contain buttons that will perform actions on the specific datapoint. You may not declare this property and the default of false will be used instead.
+
+            /*
+             * This is our action list. The actionsColumn is required to be set to true if you are going to be using an actionList. If you have set actionsColumn to true, you are also required to provide an actionList.
+             * The action list is an array of objects that contain settings for each button.
+             */
+            actionList:[
+                {
+                    predefinedButton: "predefinedButtonName",                   // You may pass the name of a predefined button here. NOTE: If you pass this property, any values within actionElementIcon and actionElementClasses WILL be overwritten
+                    actionElementIcon: "glyphiconOrFontAwesomeName",            // This is where you may pass the class of a glyphicon or Font Awesome icon that you wish to use. This property is overwritten if a predefinedButton is declared.
+                    actionElementClasses: "addedButtonClasses",                 // This is where you may declare any classes you wish to use for styling the button. This property is overwritten if a predefinedButton is declared.
+                    actionFunctionAdditionalParametersArray: [param1],          // This is an array of any additional objects that you wish to pass into actionFunction call. Any additional parameters are added in the same order as declared in this array.
+                    actionFunction: function(dataPoint, param1){}               // The actionFunction is the function that you want called when the button is pressed. The action function is passed the dataPoint at the row in the table where the button is pressed.
+                }
+            ]
+        }
+    ],
+    /*
+     * This is the request function for the data that the table is going to display.
+     * This function should work as it is if you declare data to be the datasource you wish to display in the table.
+     * It is the system that sets up paged requests and it should either pass an error to the first parameter to the callback,
+     * or pass back an array of the section of data between the passed in start and finish properties.
+     * Sorting and filtering is also required to happen at this stage. However, you can easily complete these by just calling
+     * the tableSettings support function 'sortAndFilterData', with the total data source as the first property, and passing the options
+     * parameter straight in as the second parameter. This is a NON-Modifying operation, so the result does need to be assigned.
+     *
+     * This system is setup for promises, however this is UNTESTED. To use this system with promises, simply remove the callback parameter from the function header,
+     * and have the function return the promise that is to be used for the data source. This promise is expected to return a slice of the full data set between
+     * start and finish, and as of currently, I am unsure on the support of this on the backend.
+     *
+     * The callback function takes parameters : (error, data)
+     * If an error is not null, the data will be ignored.
+     */
+    dataRequestFunction: function(start, finish, options, callback){
+        var data = datasource;
+        if(data) {
+            callback(new Error("No data available"), null);
+            return;
+        }
+        var data = tableSettings.support.sortAndFilterData(data, options);
+
+        callback(null, data.slice(start, finish));
+    },
+
+    /*
+     * This function is requesting the total data size after any filtering.
+     * You should be able to us this function as is, with the only replacement required being the dataSource.
+     */
+    dataRequestSizeFunction: function(options){
+        var data = dataSource;
+        data = tableSettings.support.sortAndFilterData(data, options);
+        return data ? data.length : 0;
+    }
+};

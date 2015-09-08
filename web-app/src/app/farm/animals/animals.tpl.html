@@ -1,0 +1,104 @@
+
+<ag-paged-table datasource="tableDataSource"></ag-paged-table>
+
+<!-- Modal -->
+<div class="modal fade" id="editAnimalHerdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="editAnimalHerdModalLabel">Change herd for animals</h4>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <div class="form-group">
+                        <label> Change herd for <em>{{editAnimals.length}}</em> animal(s)</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Herd name</label>
+                        <select class="form-control"  ng-model="herdName" ng-options="herd as herd.name for herd in farmHerds">
+                        </select>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" ng-click="saveEditedAnimals(herdName)">Apply</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="deleteAnimalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="deleteAnimalModalLabel">Delete Animal</h4>
+            </div>
+            <div class="modal-body">
+
+                <form>
+
+                    <div class="form-group">
+                        <label> Are you sure you want to delete the <em>{{editAnimals.length}}</em> animal(s) selected</label>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="cancelActionModal('#deleteAnimalModal')">Cancel</button>
+                <button type="button" class="btn btn-danger" ng-click="deleteAnimals()">Delete Animal(s)</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="addAnimalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="addAnimalModalLabel">Create Animal</h4>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <div class="form-group">
+                        <label>EID</label><br />
+                        <input class="form-control" type="text" ng-model="newAnimal.eid">
+                    </div>
+                    <div class="form-group">
+                        <label>VID</label><br />
+                        <input class="form-control" type="text" ng-model="newAnimal.vid">
+                    </div>
+                    <div class="form-group">
+                        <label>Herd</label><br />
+                        <select class="form-control"  ng-model="newAnimal.herdId" ng-options="herd.id as herd.name for herd in farmHerds">
+                        </select>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" ng-click="createAnimal(newAnimal.herdId, newAnimal.eid, newAnimal.vid)">Create Animal</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+
+            <h3 class="panel-title">Create an AgBase Account</h3>
+
+            <form role="form">
+                <fieldset>
+
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Email" name="email" type="email"  ng-model="user.email" id="inputEmail" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Password" name="password" type="password" value="" ng-model="user.password" id="inputPassword">
+                    </div>
+
+                    <button class="btn btn-lg btn-success btn-block" ng-click="">Create New Account</button>
+                </fieldset>
+            </form>
+
+            <p>Already have an account? <a href="login">Log in.</a></p>
+
+        </div>
+    </div>
+</div>

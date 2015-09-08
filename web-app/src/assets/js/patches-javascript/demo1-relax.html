@@ -1,0 +1,311 @@
+/* demo1-relax.html
+ * 
+ * Copyright (c) 2015. Elec Research.
+ 
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * Author: Richard Norton
+ *
+ * This file incorporates work covered by the following copyright and
+ * permission notice:
+ *
+ *   Copyright (C) 2010-2013 Raymond Hill https://github.com/gorhill/Javascript-Voronoi
+ *
+ *   Licensed under The MIT License http://en.wikipedia.org/wiki/MIT_License;
+ *   Permission is hereby granted, free of charge, to any person obtaining a 
+ *   copy of this software and associated documentation files (the "Software"), 
+ *   to deal in the Software without restriction, including without limitation 
+ *   the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+ *   and/or sell copies of the Software, and to permit persons to whom the Software 
+ *   is furnished to do so, subject to the following conditions:
+ *
+ *   The above copyright notice and this permission notice shall be included in 
+ *   all copies or substantial portions of the Software.
+ *
+ *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+ *   INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS 
+ *   FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS 
+ *   OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+ *   WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF 
+ *   OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ */
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Javascript implementation mesh algorithm: Demo 1</title>
+<script type="text/javascript" src="patches-core.js"></script>
+<style type="text/css">
+body {font-family:tahoma,verdana,arial;font-size:13px;margin:0;padding:0}
+body > div {margin-left:4px;margin-right:4px;}
+body > div > div {margin:0;border:1px solid #ccc;border-top:0;padding:4px;}
+h1 {margin:0 0 0.5em 0;padding: 4px 5em 4px 4px;font:bold large sans-serif;background-color:#c9d7f1;}
+h4 {font-size:14px;margin:0.5em 0 0 0;border:0;border-bottom:solid 1px #c9d7f1;padding:2px;background-color:#e5ecf9;}
+#canvasParent {margin-top:0;margin-bottom:1em;padding:0;border:0}
+#patchesCode {font:11px monospace;overflow:auto;color:#666;}
+#patchesCode span {color:green;font-weight:bold;}
+</style>
+<script id="script" type="text/javascript">
+var PatchesDemo = {
+    patches: new Patches(),
+    canvas: null,
+	paddock: null,   
+	vramapdata: [],
+	costparams: null,
+	
+    init: function() {
+		this.patches.reset();		
+        this.canvas = document.getElementById('patchesCanvas');
+		this.dataDefinition();
+		this.renderdata();	
+        },
+
+    // explicitly input boundary sites of paddock as geoJSON polygon
+    dataDefinition: function() {
+
+		var sites = [], origin, n, i, points=[], nboundary, fval, v, boundary;
+
+		// define an origin (only for the purpose of creating artifical data, usually origin will be first coordinate of paddock)
+		origin = {lon: 168.90380859375, lat:-46.10370875598025}
+
+		// define paddock as geoJSON polygon
+		sites.push({x:100,y:100});
+		sites.push({x:500,y:100});		
+		sites.push({x:300,y:300});
+		sites.push({x:500,y:500});
+		sites.push({x:100,y:500});
+		
+		this.patches.origin = {lon: origin.lon, lat: origin.lat };
+		this.paddock = this.patches.convertsites2polygon(sites);
+		
+		// define VRA map data
+		
+		n = 100;	// number of points for VRA map data
+		this.patches.createbbandorigin(this.paddock);						// redefine origin!	
+		boundary = this.patches.convertgeoJSONpolygon2sites(this.paddock);	// define boundary of paddock, then sample n random points in paddock
+		nboundary = boundary.length;
+		this.patches.createboundary(boundary,nboundary);
+		points = this.patches.randomSites(points,n);	
+		// define function values and vramapdata array
+		for(i=0;i<n;i++) {
+			fval = 1+Math.sin(points[i].x/60) * Math.sin(points[i].y/100);
+			v = this.patches.convertsite2coordinates(points[i]);
+			this.vramapdata[i] = {lat: v.lat,lon: v.lon, concentration: fval};
+			}
+	
+		this.costparams = {p:0.5, k:1.0, r:1.0, resolution:10.0};
+//		console.log(this.costparams);
+//		this.costparams.p = 0.5;	// price of fertilizer per kg
+//		this.costparams.k = 1;		// slope parameter for cost function
+//		this.costparams.r = 1;	 	// slope parameter for runoff part of cost function       
+//		this.costparams.resolution = 10;
+
+		},
+
+	// compute patches inside paddock.
+	// this.patches.output is an array where 
+	// this.patches.output[i].polygon is a geoJSON polygon
+    compute: function(n) {
+		var maxmin = 0; // fix sites at max and min of data? maxmin=1=yes, maxmin=0=no.
+		this.patches.computeFromPaddock(this.paddock,this.vramapdata,maxmin,n,this.costparams);	// n = number of additional sites in paddock
+		},
+
+	// relax points, i.e. introduce force to move them away from each other.
+	// must call this.compute(n) before this.relax()
+	relax: function() {
+		var m=1,dt=0.1, maxmin = 0, nfixed;	// fix sites at max and min of data? maxmin=1=yes, maxmin=0=no.		
+		nfixed = this.paddock.coordinates.length-1;
+		if(maxmin==1) { nfixed+=2; } 
+	 											// m = number of relaxation steps
+		this.patches.relaxSites(m,dt,nfixed);	// dt = size of relaxation step (i.e. time step for integrating)
+		this.patches.computefvals();			// nfixed = no. of fixed sites (first nfixed sites are fixed)
+		//c = this.patches.costfunction2(this.patches.sites,this.costparams);
+		//console.log(c);
+		this.patches.createoutputpolygonswithfvals(this.patches.cells,this.patches.fvals);
+		//this.output.cost = c;	// append cost of suboptimal fertilizer application to output.		
+		//console.log(this.patches.output);
+	},
+
+	// relaxation all at once
+	relaxoneshot: function(n) {
+		var maxmin = 0;		// fix sites at max and min of data? 1=yes, 0=no.
+		this.patches.relaxdriverFromPaddock(this.paddock,this.vramapdata,maxmin,n,this.costparams);
+		},
+
+	convertsite2drawsite: function(v) {
+		var vx,vy,
+			xmin = this.patches.boundingbox.xmin,
+			xmax = this.patches.boundingbox.xmax,
+			ymin = this.patches.boundingbox.ymin,
+			ymax = this.patches.boundingbox.ymax,
+		vx = (v.x-xmin)/(xmax-xmin) * this.canvas.width;
+		vy = (v.y-ymin)/(ymax-ymin) * this.canvas.height;
+		return {x:vx, y:vy};
+		},
+
+	renderbackground: function(){
+		var ctx = this.canvas.getContext('2d');
+		// background
+        ctx.globalAlpha = 1;
+        ctx.beginPath();
+        ctx.rect(0,0,this.canvas.width,this.canvas.height);
+        ctx.fillStyle = 'white'; 
+		ctx.fill();
+        ctx.strokeStyle = '#888';
+        ctx.stroke();
+		},
+
+	renderpaddock: function(){
+		var v,w,sites,
+			ctx = this.canvas.getContext('2d');
+
+		// convert coordinates (lat/long) to metres
+		sites = this.patches.convertgeoJSONpolygon2sites(this.paddock);
+
+		ctx.beginPath();
+		ctx.strokeStyle = '#0F0';
+		v = sites[0]; 
+		w = this.convertsite2drawsite(v);
+		ctx.moveTo(w.x,w.y);
+		n = sites.length;
+		for(i=1; i<n; i++) {
+	    	v = sites[i]; 
+			w = this.convertsite2drawsite(v);
+			ctx.lineTo(w.x,w.y);
+	    	}
+		ctx.closePath();
+		ctx.stroke();
+		},
+
+	// converts f into number between 0 and 255, then stringify
+	colourmap: function(fmin,fmax,f) {return Math.round(255*(f-fmin)/(fmax-fmin));},
+	rgbstring: function(n){return "rgb(0,0,"+String(n)+")";},
+	
+	// calculate max and min concentration value of data
+	rangedata: function(data){
+		var i,fval,maxf=-Infinity,minf=Infinity;
+		for(i=0;i<data.length;i++) {
+			fval = data[i].concentration;
+			if( fval>maxf ){ maxf = fval; }
+			if( fval<minf ){ minf = fval; }
+			}
+		return {min: minf, max:maxf};
+		},
+	
+	// draw paddock and vramap
+	renderdata: function() {
+		this.renderbackground();
+		this.renderpaddock();
+		var ctx = this.canvas.getContext('2d'),
+			i = this.vramapdata.length,cmap,fval,v,w,
+			range = this.rangedata(this.vramapdata); // find range of data concentrations
+		
+        while (i--) {
+			datapoint = this.vramapdata[i];
+			fval = datapoint.concentration;
+			//v = {x:datapoint.lon, y:datapoint.lat};
+			v = this.patches.convertcoordinates2site(datapoint.lon,datapoint.lat);
+			w = this.convertsite2drawsite(v);
+			cmap = this.colourmap(range.min,range.max,fval);	
+			ctx.beginPath();
+			ctx.fillStyle = this.rgbstring(cmap);
+            ctx.rect(w.x-10,w.y-10,20,20);
+            ctx.fill();
+			ctx.closePath();
+			ctx.stroke();
+			}
+        },
+
+	// draw paddock  boundary, sites, triangles and polygons in paddock
+    render: function() {
+		this.renderbackground();
+		this.renderpaddock();        
+		var ctx = this.canvas.getContext('2d'),
+			v,w,v1,v2,n,sites,i,j,k,ii;
+			
+		if(!this.patches.sites) {return;}
+		sites = this.patches.sites;
+			
+		// plot triangles
+		if(!this.patches.triangles) {return;}
+		i = this.patches.triangles.length;
+		while(i--) {
+		   	ctx.beginPath();
+			ctx.strokeStyle = '#DDD';
+			v = sites[this.patches.triangles[i].i]; w = this.convertsite2drawsite(v); ctx.moveTo(w.x, w.y);
+        	v = sites[this.patches.triangles[i].j]; w = this.convertsite2drawsite(v); ctx.lineTo(w.x, w.y); 
+        	v = sites[this.patches.triangles[i].k]; w = this.convertsite2drawsite(v); ctx.lineTo(w.x, w.y);
+        	ctx.closePath();
+        	ctx.stroke();
+      		}
+		
+		// plot cell sites
+		ctx.beginPath();
+        ctx.fillStyle = '#0F0';
+        i = sites.length;
+        while (i--) {
+            v = sites[i]; w = this.convertsite2drawsite(v); ctx.rect(w.x-2,w.y-2,5,5);
+            }
+        ctx.fill();
+		ctx.closePath();
+		ctx.stroke();
+		
+		// plot output polygons and fill
+		if(!this.patches.output) {return;}
+		i = this.patches.output.length;
+		var npolygon,polygon,colourstring,fval,range,colourval;
+
+		range = this.patches.rangeconcentration(this.patches.output);
+		while(i--) {
+			polygon = this.patches.output[i].polygon;
+			// convert coordinates (lat/long) to metres
+			sites = this.patches.convertgeoJSONpolygon2sites(polygon);
+			//npolygon = polygon.coordinates.length;
+			ctx.beginPath();
+			ctx.strokeStyle = '#000';
+			v = sites[0]; w = this.convertsite2drawsite(v); ctx.moveTo(w.x,w.y);	
+			n = sites.length;		
+			for(j=1; j<n; j++) {
+				v = sites[j]; w = this.convertsite2drawsite(v); ctx.lineTo(w.x,w.y);
+				}
+			ctx.closePath();
+			// convert concentration to integer between 0 and 255
+			fval = this.patches.output[i].concentration;
+			colourval = this.colourmap(range.min,range.max,fval);
+			colourstring = this.rgbstring(colourval);
+			ctx.fillStyle = colourstring;			
+			ctx.fill();
+			ctx.stroke();
+			}
+		},
+    };
+</script>
+</head>
+<body onload="PatchesDemo.init();">
+<h1>Javascript implementation of meshing algorithm: Demo 1</h1>
+<div id="divroot" style="width:800px;">
+<h4 class="divhdr">Sites generator</h4>
+<div class="divinfo" id="patchesGenerator">
+<input type="button" value="Generate" onclick="PatchesDemo.compute(0);PatchesDemo.render();"/> or 
+<input type="button" value="Add and Generate" onclick="PatchesDemo.compute(parseInt(document.getElementById('patchesNumberSites').value,10));PatchesDemo.render();"/> <input id="patchesNumberSites" type="text" value="30" size="5" maxlength="5"/> then
+<input type="button" value="Relax" onclick="PatchesDemo.relax();PatchesDemo.render();"/> or
+<input type="button" value="Relax in one" onclick="PatchesDemo.relaxoneshot(parseInt(document.getElementById('patchesNumberSites').value,10));PatchesDemo.render();"/>
+<br/><input id="patchesClearSites" type="button" value="Clear all sites" onclick="PatchesDemo.init();"/>
+<input id="Plot data" type="button" value="Plot data" onclick="PatchesDemo.renderdata();"/>
+<input id="Plot output" type="button" value="Plot output" onclick="PatchesDemo.render();"/>
+</div>
+<h4 class="divhdr">Canvas <span id="patchesStats" style="font:normal 11px sans"></span></h4>
+<div id="canvasParent">
+<noscript>You need to enable Javascript in your browser for this page to display properly.</noscript>
+<canvas id="patchesCanvas" width="800" height="600" onclick="PatchesDemo.compute();"></canvas>
+<div id="patchesNoCanvasAlert" style="display:none;padding:1em;background-color:#fcc;color:black;">
+<p>Your browser doesn't support the HTML5 &lt;canvas&gt; element technology.</p>
+<p>See <a target="_blank" href="http://en.wikipedia.org/wiki/Canvas_(HTML_element)">Wikipedia</a> for information on which browsers support the <u>HTML5 &lt;canvas&gt;</u> technology.</p>
+</div>
+</div>
+<p id="demo"></p>
+</body>
+</html>
