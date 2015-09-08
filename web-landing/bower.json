@@ -1,0 +1,14 @@
+{
+  "name": "moogle-landing",
+  "version": "0.0.1",
+  "devDependencies": {
+    "bootstrap": "~3.3.0",
+    "jquery": "~2.1.1",
+    "font-awesome": "~4.3.0"
+  },
+  "dependencies": {
+    "bootstrap": "~3.3.0",
+    "jquery": "~2.1.1",
+    "font-awesome": "~4.3.0"
+  }
+}
