@@ -1,0 +1,3 @@
+chromedriver
+test_downloaded/*
+*.py.swp
