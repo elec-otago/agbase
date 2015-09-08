@@ -1,0 +1,1064 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'grunt-cli',
+1 verbose cli   'karma',
+1 verbose cli   'bower',
+1 verbose cli   'pm2' ]
+2 info using npm@1.4.21
+3 info using node@v0.10.29
+4 verbose cache add [ 'grunt-cli', null ]
+5 verbose cache add name=undefined spec="grunt-cli" args=["grunt-cli",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'grunt-cli',
+6 verbose parsed url   path: 'grunt-cli',
+6 verbose parsed url   href: 'grunt-cli' }
+7 verbose cache add [ 'karma', null ]
+8 verbose cache add name=undefined spec="karma" args=["karma",null]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: 'karma',
+9 verbose parsed url   path: 'karma',
+9 verbose parsed url   href: 'karma' }
+10 verbose cache add [ 'bower', null ]
+11 verbose cache add name=undefined spec="bower" args=["bower",null]
+12 verbose parsed url { protocol: null,
+12 verbose parsed url   slashes: null,
+12 verbose parsed url   auth: null,
+12 verbose parsed url   host: null,
+12 verbose parsed url   port: null,
+12 verbose parsed url   hostname: null,
+12 verbose parsed url   hash: null,
+12 verbose parsed url   search: null,
+12 verbose parsed url   query: null,
+12 verbose parsed url   pathname: 'bower',
+12 verbose parsed url   path: 'bower',
+12 verbose parsed url   href: 'bower' }
+13 verbose cache add [ 'pm2', null ]
+14 verbose cache add name=undefined spec="pm2" args=["pm2",null]
+15 verbose parsed url { protocol: null,
+15 verbose parsed url   slashes: null,
+15 verbose parsed url   auth: null,
+15 verbose parsed url   host: null,
+15 verbose parsed url   port: null,
+15 verbose parsed url   hostname: null,
+15 verbose parsed url   hash: null,
+15 verbose parsed url   search: null,
+15 verbose parsed url   query: null,
+15 verbose parsed url   pathname: 'pm2',
+15 verbose parsed url   path: 'pm2',
+15 verbose parsed url   href: 'pm2' }
+16 silly lockFile 671ef8ac-grunt-cli grunt-cli
+17 verbose lock grunt-cli /home/tm/.npm/671ef8ac-grunt-cli.lock
+18 silly lockFile 512423cb-karma karma
+19 verbose lock karma /home/tm/.npm/512423cb-karma.lock
+20 silly lockFile 206e3ce5-bower bower
+21 verbose lock bower /home/tm/.npm/206e3ce5-bower.lock
+22 silly lockFile b1fbedd8-pm2 pm2
+23 verbose lock pm2 /home/tm/.npm/b1fbedd8-pm2.lock
+24 silly lockFile 671ef8ac-grunt-cli grunt-cli
+25 silly lockFile 671ef8ac-grunt-cli grunt-cli
+26 silly lockFile 206e3ce5-bower bower
+27 silly lockFile 206e3ce5-bower bower
+28 silly lockFile 512423cb-karma karma
+29 silly lockFile 512423cb-karma karma
+30 verbose addNamed [ 'grunt-cli', '' ]
+31 verbose addNamed [ null, '*' ]
+32 silly lockFile d63f3d0b-grunt-cli grunt-cli@
+33 verbose lock grunt-cli@ /home/tm/.npm/d63f3d0b-grunt-cli.lock
+34 verbose addNamed [ 'bower', '' ]
+35 verbose addNamed [ null, '*' ]
+36 silly lockFile 1240aab1-bower bower@
+37 verbose lock bower@ /home/tm/.npm/1240aab1-bower.lock
+38 verbose addNamed [ 'karma', '' ]
+39 verbose addNamed [ null, '*' ]
+40 silly lockFile cd7961bb-karma karma@
+41 verbose lock karma@ /home/tm/.npm/cd7961bb-karma.lock
+42 silly lockFile b1fbedd8-pm2 pm2
+43 silly lockFile b1fbedd8-pm2 pm2
+44 silly addNameRange { name: 'grunt-cli', range: '*', hasData: false }
+45 silly addNameRange { name: 'bower', range: '*', hasData: false }
+46 silly addNameRange { name: 'karma', range: '*', hasData: false }
+47 verbose addNamed [ 'pm2', '' ]
+48 verbose addNamed [ null, '*' ]
+49 silly lockFile d1072219-pm2 pm2@
+50 verbose lock pm2@ /home/tm/.npm/d1072219-pm2.lock
+51 silly addNameRange { name: 'pm2', range: '*', hasData: false }
+52 verbose request where is /pm2
+53 verbose request registry https://registry.npmjs.org/
+54 verbose request id 21fd0ed3e6e39806
+55 verbose url raw /pm2
+56 verbose url resolving [ 'https://registry.npmjs.org/', './pm2' ]
+57 verbose url resolved https://registry.npmjs.org/pm2
+58 verbose request where is https://registry.npmjs.org/pm2
+59 info trying registry request attempt 1 at 16:29:42
+60 verbose etag "4M9J5YO6S0X1IPVNZI3DKJBXH"
+61 http GET https://registry.npmjs.org/pm2
+62 verbose request where is /grunt-cli
+63 verbose request registry https://registry.npmjs.org/
+64 verbose url raw /grunt-cli
+65 verbose url resolving [ 'https://registry.npmjs.org/', './grunt-cli' ]
+66 verbose url resolved https://registry.npmjs.org/grunt-cli
+67 verbose request where is https://registry.npmjs.org/grunt-cli
+68 info trying registry request attempt 1 at 16:29:42
+69 verbose etag "7E8D0YWMBS43ZQ6OJRT932OQG"
+70 http GET https://registry.npmjs.org/grunt-cli
+71 verbose request where is /karma
+72 verbose request registry https://registry.npmjs.org/
+73 verbose url raw /karma
+74 verbose url resolving [ 'https://registry.npmjs.org/', './karma' ]
+75 verbose url resolved https://registry.npmjs.org/karma
+76 verbose request where is https://registry.npmjs.org/karma
+77 info trying registry request attempt 1 at 16:29:42
+78 verbose etag "EVI0WGIS3UFRIS1RLTVCDBW4C"
+79 http GET https://registry.npmjs.org/karma
+80 verbose request where is /bower
+81 verbose request registry https://registry.npmjs.org/
+82 verbose url raw /bower
+83 verbose url resolving [ 'https://registry.npmjs.org/', './bower' ]
+84 verbose url resolved https://registry.npmjs.org/bower
+85 verbose request where is https://registry.npmjs.org/bower
+86 info trying registry request attempt 1 at 16:29:42
+87 verbose etag "EL9MGRLNON4T4ZXP9J0EA9ZP2"
+88 http GET https://registry.npmjs.org/bower
+89 http 200 https://registry.npmjs.org/grunt-cli
+90 silly registry.get cb [ 200,
+90 silly registry.get   { date: 'Thu, 19 Mar 2015 03:29:43 GMT',
+90 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+90 silly registry.get     etag: '"AYJJZF2FXWVC9254BWEXOD4TA"',
+90 silly registry.get     'content-type': 'application/json',
+90 silly registry.get     'cache-control': 'max-age=60',
+90 silly registry.get     'content-length': '20543',
+90 silly registry.get     'accept-ranges': 'bytes',
+90 silly registry.get     via: '1.1 varnish',
+90 silly registry.get     age: '0',
+90 silly registry.get     'x-served-by': 'cache-akl6420-AKL',
+90 silly registry.get     'x-cache': 'HIT',
+90 silly registry.get     'x-cache-hits': '1',
+90 silly registry.get     'x-timer': 'S1426735783.455396,VS0,VE213',
+90 silly registry.get     vary: 'Accept',
+90 silly registry.get     'keep-alive': 'timeout=10, max=50',
+90 silly registry.get     connection: 'Keep-Alive' } ]
+91 silly addNameRange number 2 { name: 'grunt-cli', range: '*', hasData: true }
+92 silly addNameRange versions [ 'grunt-cli',
+92 silly addNameRange   [ '0.1.0',
+92 silly addNameRange     '0.1.1',
+92 silly addNameRange     '0.1.2',
+92 silly addNameRange     '0.1.3',
+92 silly addNameRange     '0.1.4',
+92 silly addNameRange     '0.1.5',
+92 silly addNameRange     '0.1.6',
+92 silly addNameRange     '0.1.7',
+92 silly addNameRange     '0.1.8',
+92 silly addNameRange     '0.1.9',
+92 silly addNameRange     '0.1.10',
+92 silly addNameRange     '0.1.11',
+92 silly addNameRange     '0.1.12',
+92 silly addNameRange     '0.1.13' ] ]
+93 verbose addNamed [ 'grunt-cli', '0.1.13' ]
+94 verbose addNamed [ '0.1.13', '0.1.13' ]
+95 silly lockFile 28997503-grunt-cli-0-1-13 grunt-cli@0.1.13
+96 verbose lock grunt-cli@0.1.13 /home/tm/.npm/28997503-grunt-cli-0-1-13.lock
+97 silly lockFile 28997503-grunt-cli-0-1-13 grunt-cli@0.1.13
+98 silly lockFile 28997503-grunt-cli-0-1-13 grunt-cli@0.1.13
+99 silly lockFile d63f3d0b-grunt-cli grunt-cli@
+100 silly lockFile d63f3d0b-grunt-cli grunt-cli@
+101 http 200 https://registry.npmjs.org/bower
+102 silly registry.get cb [ 200,
+102 silly registry.get   { date: 'Thu, 19 Mar 2015 03:29:43 GMT',
+102 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+102 silly registry.get     etag: '"51BJED1C4RZB5W48BK7WRUX2L"',
+102 silly registry.get     'content-type': 'application/json',
+102 silly registry.get     'cache-control': 'max-age=60',
+102 silly registry.get     'content-length': '106146',
+102 silly registry.get     'accept-ranges': 'bytes',
+102 silly registry.get     via: '1.1 varnish',
+102 silly registry.get     age: '0',
+102 silly registry.get     'x-served-by': 'cache-akl6420-AKL',
+102 silly registry.get     'x-cache': 'HIT',
+102 silly registry.get     'x-cache-hits': '1',
+102 silly registry.get     'x-timer': 'S1426735783.455525,VS0,VE166',
+102 silly registry.get     vary: 'Accept',
+102 silly registry.get     'keep-alive': 'timeout=10, max=50',
+102 silly registry.get     connection: 'Keep-Alive' } ]
+103 silly addNameRange number 2 { name: 'bower', range: '*', hasData: true }
+104 silly addNameRange versions [ 'bower',
+104 silly addNameRange   [ '0.1.0',
+104 silly addNameRange     '0.1.2',
+104 silly addNameRange     '0.1.3',
+104 silly addNameRange     '0.2.0',
+104 silly addNameRange     '0.3.0',
+104 silly addNameRange     '0.3.1',
+104 silly addNameRange     '0.3.2',
+104 silly addNameRange     '0.4.0',
+104 silly addNameRange     '0.5.0',
+104 silly addNameRange     '0.5.1',
+104 silly addNameRange     '0.6.0',
+104 silly addNameRange     '0.6.1',
+104 silly addNameRange     '0.6.2',
+104 silly addNameRange     '0.6.3',
+104 silly addNameRange     '0.6.4',
+104 silly addNameRange     '0.6.5',
+104 silly addNameRange     '0.6.6',
+104 silly addNameRange     '0.6.7',
+104 silly addNameRange     '0.6.8',
+104 silly addNameRange     '0.7.0',
+104 silly addNameRange     '0.7.1',
+104 silly addNameRange     '0.8.0',
+104 silly addNameRange     '0.8.1',
+104 silly addNameRange     '0.8.2',
+104 silly addNameRange     '0.8.3',
+104 silly addNameRange     '0.8.4',
+104 silly addNameRange     '0.8.5',
+104 silly addNameRange     '0.8.6',
+104 silly addNameRange     '0.9.0',
+104 silly addNameRange     '0.9.1',
+104 silly addNameRange     '0.9.2',
+104 silly addNameRange     '0.10.0',
+104 silly addNameRange     '1.0.0',
+104 silly addNameRange     '1.0.1',
+104 silly addNameRange     '1.0.2',
+104 silly addNameRange     '1.0.3',
+104 silly addNameRange     '1.1.0',
+104 silly addNameRange     '1.1.1',
+104 silly addNameRange     '1.1.2',
+104 silly addNameRange     '1.2.0',
+104 silly addNameRange     '1.2.1',
+104 silly addNameRange     '1.2.2',
+104 silly addNameRange     '1.2.3',
+104 silly addNameRange     '1.2.4',
+104 silly addNameRange     '1.2.5',
+104 silly addNameRange     '1.2.6',
+104 silly addNameRange     '1.2.7',
+104 silly addNameRange     '1.2.8',
+104 silly addNameRange     '1.3.0',
+104 silly addNameRange     '1.3.1',
+104 silly addNameRange     '1.3.2',
+104 silly addNameRange     '1.3.3',
+104 silly addNameRange     '1.3.4',
+104 silly addNameRange     '1.3.5',
+104 silly addNameRange     '1.3.6',
+104 silly addNameRange     '1.3.7',
+104 silly addNameRange     '1.3.8',
+104 silly addNameRange     '1.3.9',
+104 silly addNameRange     '1.3.10',
+104 silly addNameRange     '1.3.11',
+104 silly addNameRange     '1.3.12' ] ]
+105 verbose addNamed [ 'bower', '1.3.12' ]
+106 verbose addNamed [ '1.3.12', '1.3.12' ]
+107 silly lockFile 9819431c-bower-1-3-12 bower@1.3.12
+108 verbose lock bower@1.3.12 /home/tm/.npm/9819431c-bower-1-3-12.lock
+109 silly lockFile 9819431c-bower-1-3-12 bower@1.3.12
+110 silly lockFile 9819431c-bower-1-3-12 bower@1.3.12
+111 silly lockFile 1240aab1-bower bower@
+112 silly lockFile 1240aab1-bower bower@
+113 http 200 https://registry.npmjs.org/karma
+114 silly registry.get cb [ 200,
+114 silly registry.get   { date: 'Thu, 19 Mar 2015 03:29:43 GMT',
+114 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+114 silly registry.get     etag: '"4PPE2KP2IBTC4Q5ZE8YX3B3U5"',
+114 silly registry.get     'content-type': 'application/json',
+114 silly registry.get     'cache-control': 'max-age=60',
+114 silly registry.get     'content-length': '688176',
+114 silly registry.get     'accept-ranges': 'bytes',
+114 silly registry.get     via: '1.1 varnish',
+114 silly registry.get     age: '0',
+114 silly registry.get     'x-served-by': 'cache-akl6420-AKL',
+114 silly registry.get     'x-cache': 'HIT',
+114 silly registry.get     'x-cache-hits': '1',
+114 silly registry.get     'x-timer': 'S1426735783.455427,VS0,VE240',
+114 silly registry.get     vary: 'Accept',
+114 silly registry.get     'keep-alive': 'timeout=10, max=50',
+114 silly registry.get     connection: 'Keep-Alive' } ]
+115 silly addNameRange number 2 { name: 'karma', range: '*', hasData: true }
+116 silly addNameRange versions [ 'karma',
+116 silly addNameRange   [ '0.8.0',
+116 silly addNameRange     '0.9.0-dart',
+116 silly addNameRange     '0.8.1',
+116 silly addNameRange     '0.8.2',
+116 silly addNameRange     '0.8.3',
+116 silly addNameRange     '0.9.0',
+116 silly addNameRange     '0.8.4',
+116 silly addNameRange     '0.9.1',
+116 silly addNameRange     '0.8.5',
+116 silly addNameRange     '0.9.2',
+116 silly addNameRange     '0.9.2-dart',
+116 silly addNameRange     '0.9.3',
+116 silly addNameRange     '0.8.6',
+116 silly addNameRange     '0.9.4',
+116 silly addNameRange     '0.8.7',
+116 silly addNameRange     '0.9.5',
+116 silly addNameRange     '0.9.6',
+116 silly addNameRange     '0.8.8',
+116 silly addNameRange     '0.9.7',
+116 silly addNameRange     '0.9.8',
+116 silly addNameRange     '0.10.0',
+116 silly addNameRange     '0.10.1',
+116 silly addNameRange     '0.10.2',
+116 silly addNameRange     '0.11.0',
+116 silly addNameRange     '0.11.1',
+116 silly addNameRange     '0.10.3',
+116 silly addNameRange     '0.10.4',
+116 silly addNameRange     '0.11.2',
+116 silly addNameRange     '0.11.3',
+116 silly addNameRange     '0.10.5',
+116 silly addNameRange     '0.11.4',
+116 silly addNameRange     '0.11.5',
+116 silly addNameRange     '0.10.6',
+116 silly addNameRange     '0.11.6',
+116 silly addNameRange     '0.10.7',
+116 silly addNameRange     '0.11.7',
+116 silly addNameRange     '0.11.8',
+116 silly addNameRange     '0.11.9',
+116 silly addNameRange     '0.10.8',
+116 silly addNameRange     '0.11.10',
+116 silly addNameRange     '0.11.11',
+116 silly addNameRange     '0.11.12',
+116 silly addNameRange     '0.11.11-dev',
+116 silly addNameRange     '0.10.9',
+116 silly addNameRange     '0.11.12-dev',
+116 silly addNameRange     '0.11.12-dev2',
+116 silly addNameRange     '0.11.13',
+116 silly addNameRange     '0.11.14',
+116 silly addNameRange     '0.12.0',
+116 silly addNameRange     '0.10.10',
+116 silly addNameRange     '0.12.1',
+116 silly addNameRange     '0.12.2',
+116 silly addNameRange     '0.12.3',
+116 silly addNameRange     '0.12.4',
+116 silly addNameRange     '0.12.5',
+116 silly addNameRange     '0.12.6',
+116 silly addNameRange     '0.12.6-beta-43e6e28',
+116 silly addNameRange     '0.12.7',
+116 silly addNameRange     '0.12.8',
+116 silly addNameRange     '0.12.9',
+116 silly addNameRange     '0.12.10',
+116 silly addNameRange     '0.12.11',
+116 silly addNameRange     '0.12.12',
+116 silly addNameRange     '0.12.11-beta-3029418',
+116 silly addNameRange     '0.12.13',
+116 silly addNameRange     '0.12.14',
+116 silly addNameRange     '0.12.15',
+116 silly addNameRange     '0.12.16',
+116 silly addNameRange     '0.12.16-beta-905422d',
+116 silly addNameRange     '0.12.17',
+116 silly addNameRange     '0.12.18',
+116 silly addNameRange     '0.12.19',
+116 silly addNameRange     '0.12.20',
+116 silly addNameRange     '0.12.21',
+116 silly addNameRange     '0.12.22',
+116 silly addNameRange     '0.12.23',
+116 silly addNameRange     '0.12.24',
+116 silly addNameRange     '0.12.24-beta-6cf7955',
+116 silly addNameRange     '0.12.25',
+116 silly addNameRange     '0.12.25-beta-37a7958',
+116 silly addNameRange     '0.12.25-beta-ad5bc24',
+116 silly addNameRange     '0.12.26',
+116 silly addNameRange     '0.12.27',
+116 silly addNameRange     '0.12.28',
+116 silly addNameRange     '0.12.28-beta-b9be580',
+116 silly addNameRange     '0.12.29',
+116 silly addNameRange     '0.12.30',
+116 silly addNameRange     '0.12.31',
+116 silly addNameRange     '0.12.28-beta-f65c864',
+116 silly addNameRange     '0.12.24-dev-test',
+116 silly addNameRange     '0.12.24-dev-socketio10',
+116 silly addNameRange     '0.12.24-dev-socketio10-2',
+116 silly addNameRange     '0.12.32-beta.0',
+116 silly addNameRange     '0.12.32' ] ]
+117 verbose addNamed [ 'karma', '0.12.31' ]
+118 verbose addNamed [ '0.12.31', '0.12.31' ]
+119 silly lockFile feea9de1-karma-0-12-31 karma@0.12.31
+120 verbose lock karma@0.12.31 /home/tm/.npm/feea9de1-karma-0-12-31.lock
+121 silly lockFile feea9de1-karma-0-12-31 karma@0.12.31
+122 silly lockFile feea9de1-karma-0-12-31 karma@0.12.31
+123 silly lockFile cd7961bb-karma karma@
+124 silly lockFile cd7961bb-karma karma@
+125 http 200 https://registry.npmjs.org/pm2
+126 silly registry.get cb [ 200,
+126 silly registry.get   { date: 'Thu, 19 Mar 2015 03:29:46 GMT',
+126 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+126 silly registry.get     etag: '"DQ12U4EX8HJKKQFJ4XGY731YT"',
+126 silly registry.get     'content-type': 'application/json',
+126 silly registry.get     'cache-control': 'max-age=60',
+126 silly registry.get     'content-length': '279564',
+126 silly registry.get     'accept-ranges': 'bytes',
+126 silly registry.get     via: '1.1 varnish',
+126 silly registry.get     age: '2',
+126 silly registry.get     'x-served-by': 'cache-akl6420-AKL',
+126 silly registry.get     'x-cache': 'MISS',
+126 silly registry.get     'x-cache-hits': '0',
+126 silly registry.get     'x-timer': 'S1426735783.455396,VS0,VE2560',
+126 silly registry.get     vary: 'Accept',
+126 silly registry.get     'keep-alive': 'timeout=10, max=50',
+126 silly registry.get     connection: 'Keep-Alive' } ]
+127 silly addNameRange number 2 { name: 'pm2', range: '*', hasData: true }
+128 silly addNameRange versions [ 'pm2',
+128 silly addNameRange   [ '0.4.0',
+128 silly addNameRange     '0.4.1',
+128 silly addNameRange     '0.4.2',
+128 silly addNameRange     '0.4.3',
+128 silly addNameRange     '0.4.4',
+128 silly addNameRange     '0.4.5',
+128 silly addNameRange     '0.4.6',
+128 silly addNameRange     '0.4.7',
+128 silly addNameRange     '0.4.8',
+128 silly addNameRange     '0.4.10',
+128 silly addNameRange     '0.4.11',
+128 silly addNameRange     '0.4.12',
+128 silly addNameRange     '0.4.13',
+128 silly addNameRange     '0.4.14',
+128 silly addNameRange     '0.5.0',
+128 silly addNameRange     '0.5.1',
+128 silly addNameRange     '0.5.2',
+128 silly addNameRange     '0.5.3',
+128 silly addNameRange     '0.5.4',
+128 silly addNameRange     '0.5.5',
+128 silly addNameRange     '0.5.6',
+128 silly addNameRange     '0.5.7',
+128 silly addNameRange     '0.6.2',
+128 silly addNameRange     '0.6.3',
+128 silly addNameRange     '0.6.4',
+128 silly addNameRange     '0.6.5',
+128 silly addNameRange     '0.6.6',
+128 silly addNameRange     '0.6.7',
+128 silly addNameRange     '0.6.8',
+128 silly addNameRange     '0.6.9',
+128 silly addNameRange     '0.6.10',
+128 silly addNameRange     '0.6.11',
+128 silly addNameRange     '0.6.12',
+128 silly addNameRange     '0.6.13',
+128 silly addNameRange     '0.6.14',
+128 silly addNameRange     '0.6.15',
+128 silly addNameRange     '0.7.0',
+128 silly addNameRange     '0.7.1',
+128 silly addNameRange     '0.7.2',
+128 silly addNameRange     '0.7.3',
+128 silly addNameRange     '0.7.4',
+128 silly addNameRange     '0.7.5',
+128 silly addNameRange     '0.7.6',
+128 silly addNameRange     '0.7.7',
+128 silly addNameRange     '0.7.8',
+128 silly addNameRange     '0.8.0',
+128 silly addNameRange     '0.8.1',
+128 silly addNameRange     '0.8.2',
+128 silly addNameRange     '0.8.3',
+128 silly addNameRange     '0.8.4',
+128 silly addNameRange     '0.8.5',
+128 silly addNameRange     '0.8.6',
+128 silly addNameRange     '0.8.7',
+128 silly addNameRange     '0.8.8',
+128 silly addNameRange     '0.8.9',
+128 silly addNameRange     '0.8.10',
+128 silly addNameRange     '0.8.11',
+128 silly addNameRange     '0.8.12',
+128 silly addNameRange     '0.8.13',
+128 silly addNameRange     '0.8.14',
+128 silly addNameRange     '0.8.15',
+128 silly addNameRange     '0.9.0',
+128 silly addNameRange     '0.9.1',
+128 silly addNameRange     '0.9.2',
+128 silly addNameRange     '0.9.3',
+128 silly addNameRange     '0.9.4',
+128 silly addNameRange     '0.9.5',
+128 silly addNameRange     '0.9.6',
+128 silly addNameRange     '0.10.0-beta1',
+128 silly addNameRange     '0.10.0-beta2',
+128 silly addNameRange     '0.10.0-beta4',
+128 silly addNameRange     '0.10.0-beta5',
+128 silly addNameRange     '0.10.0-beta6',
+128 silly addNameRange     '0.10.0-beta7',
+128 silly addNameRange     '0.10.0-beta8',
+128 silly addNameRange     '0.10.0-beta9',
+128 silly addNameRange     '0.10.0-beta10',
+128 silly addNameRange     '0.10.0-beta11',
+128 silly addNameRange     '0.10.0-beta12',
+128 silly addNameRange     '0.10.0-beta13',
+128 silly addNameRange     '0.10.0-beta14',
+128 silly addNameRange     '0.10.0-beta15',
+128 silly addNameRange     '0.10.0-beta16',
+128 silly addNameRange     '0.10.0-beta17',
+128 silly addNameRange     '0.10.0-beta18',
+128 silly addNameRange     '0.10.0-beta19',
+128 silly addNameRange     '0.10.0-beta20',
+128 silly addNameRange     '0.10.0-beta21',
+128 silly addNameRange     '0.10.0-beta22',
+128 silly addNameRange     '0.10.0-beta23',
+128 silly addNameRange     '0.10.0-beta25',
+128 silly addNameRange     '0.10.0',
+128 silly addNameRange     '0.10.1',
+128 silly addNameRange     '0.10.2',
+128 silly addNameRange     '0.10.3',
+128 silly addNameRange     '0.10.4',
+128 silly addNameRange     '0.10.5',
+128 silly addNameRange     '0.10.6',
+128 silly addNameRange     '0.10.7',
+128 silly addNameRange     '0.10.8',
+128 silly addNameRange     '0.11.0-beta1',
+128 silly addNameRange     '0.11.0',
+128 silly addNameRange     '0.11.1',
+128 silly addNameRange     '0.12.0',
+128 silly addNameRange     '0.12.1',
+128 silly addNameRange     '0.12.2',
+128 silly addNameRange     '0.12.3',
+128 silly addNameRange     '0.12.4',
+128 silly addNameRange     '0.12.5',
+128 silly addNameRange     '0.12.6',
+128 silly addNameRange     '0.12.7',
+128 silly addNameRange     '0.12.8' ] ]
+129 verbose addNamed [ 'pm2', '0.12.8' ]
+130 verbose addNamed [ '0.12.8', '0.12.8' ]
+131 silly lockFile 45d85341-pm2-0-12-8 pm2@0.12.8
+132 verbose lock pm2@0.12.8 /home/tm/.npm/45d85341-pm2-0-12-8.lock
+133 silly lockFile 35afed29-try-npmjs-org-pm2-pm2-0-12-8-tgz https://registry.npmjs.org/pm2/-/pm2-0.12.8.tgz
+134 verbose lock https://registry.npmjs.org/pm2/-/pm2-0.12.8.tgz /home/tm/.npm/35afed29-try-npmjs-org-pm2-pm2-0-12-8-tgz.lock
+135 verbose addRemoteTarball [ 'https://registry.npmjs.org/pm2/-/pm2-0.12.8.tgz',
+135 verbose addRemoteTarball   'b465688d47b70744423b38d0d3f9cdbdad495533' ]
+136 info retry fetch attempt 1 at 16:29:46
+137 verbose fetch to= /tmp/npm-21381-NrO-lISm/registry.npmjs.org/pm2/-/pm2-0.12.8.tgz
+138 http GET https://registry.npmjs.org/pm2/-/pm2-0.12.8.tgz
+139 http 200 https://registry.npmjs.org/pm2/-/pm2-0.12.8.tgz
+140 silly lockFile 35afed29-try-npmjs-org-pm2-pm2-0-12-8-tgz https://registry.npmjs.org/pm2/-/pm2-0.12.8.tgz
+141 silly lockFile 35afed29-try-npmjs-org-pm2-pm2-0-12-8-tgz https://registry.npmjs.org/pm2/-/pm2-0.12.8.tgz
+142 silly lockFile 45d85341-pm2-0-12-8 pm2@0.12.8
+143 silly lockFile 45d85341-pm2-0-12-8 pm2@0.12.8
+144 silly lockFile d1072219-pm2 pm2@
+145 silly lockFile d1072219-pm2 pm2@
+146 silly resolved [ { name: 'grunt-cli',
+146 silly resolved     description: 'The grunt command line interface.',
+146 silly resolved     version: '0.1.13',
+146 silly resolved     author: { name: 'Grunt Team' },
+146 silly resolved     homepage: 'http://gruntjs.com/',
+146 silly resolved     repository: { type: 'git', url: 'git://github.com/gruntjs/grunt-cli.git' },
+146 silly resolved     bugs: { url: 'http://github.com/gruntjs/grunt-cli/issues' },
+146 silly resolved     licenses: [ [Object] ],
+146 silly resolved     bin: { grunt: 'bin/grunt' },
+146 silly resolved     engines: { node: '>= 0.8.0' },
+146 silly resolved     scripts: { test: 'node bin/grunt test' },
+146 silly resolved     preferGlobal: true,
+146 silly resolved     dependencies: { nopt: '~1.0.10', 'findup-sync': '~0.1.0', resolve: '~0.3.1' },
+146 silly resolved     devDependencies: { grunt: '~0.4.0', 'grunt-contrib-jshint': '~0.2.0' },
+146 silly resolved     contributors: [ [Object], [Object], [Object], [Object] ],
+146 silly resolved     _id: 'grunt-cli@0.1.13',
+146 silly resolved     dist:
+146 silly resolved      { shasum: 'e9ebc4047631f5012d922770c39378133cad10f4',
+146 silly resolved        tarball: 'http://registry.npmjs.org/grunt-cli/-/grunt-cli-0.1.13.tgz' },
+146 silly resolved     _from: 'grunt-cli@',
+146 silly resolved     _npmVersion: '1.3.24',
+146 silly resolved     _npmUser: { name: 'tkellen', email: 'tyler@sleekcode.net' },
+146 silly resolved     maintainers: [ [Object] ],
+146 silly resolved     directories: {},
+146 silly resolved     _shasum: 'e9ebc4047631f5012d922770c39378133cad10f4',
+146 silly resolved     _resolved: 'https://registry.npmjs.org/grunt-cli/-/grunt-cli-0.1.13.tgz',
+146 silly resolved     readme: 'ERROR: No README data found!' },
+146 silly resolved   { name: 'bower',
+146 silly resolved     version: '1.3.12',
+146 silly resolved     description: 'The browser package manager',
+146 silly resolved     author: { name: 'Twitter' },
+146 silly resolved     licenses: [ [Object] ],
+146 silly resolved     repository: { type: 'git', url: 'https://github.com/bower/bower' },
+146 silly resolved     main: 'lib',
+146 silly resolved     homepage: 'http://bower.io',
+146 silly resolved     engines: { node: '>=0.10.0' },
+146 silly resolved     dependencies:
+146 silly resolved      { abbrev: '~1.0.4',
+146 silly resolved        archy: '0.0.2',
+146 silly resolved        'bower-config': '~0.5.2',
+146 silly resolved        'bower-endpoint-parser': '~0.2.2',
+146 silly resolved        'bower-json': '~0.4.0',
+146 silly resolved        'bower-logger': '~0.2.2',
+146 silly resolved        'bower-registry-client': '~0.2.0',
+146 silly resolved        cardinal: '0.4.0',
+146 silly resolved        chalk: '0.5.0',
+146 silly resolved        chmodr: '0.1.0',
+146 silly resolved        'decompress-zip': '0.0.8',
+146 silly resolved        fstream: '~1.0.2',
+146 silly resolved        'fstream-ignore': '~1.0.1',
+146 silly resolved        glob: '~4.0.2',
+146 silly resolved        'graceful-fs': '~3.0.1',
+146 silly resolved        handlebars: '~2.0.0',
+146 silly resolved        inquirer: '0.7.1',
+146 silly resolved        insight: '0.4.3',
+146 silly resolved        'is-root': '~1.0.0',
+146 silly resolved        junk: '~1.0.0',
+146 silly resolved        lockfile: '~1.0.0',
+146 silly resolved        'lru-cache': '~2.5.0',
+146 silly resolved        mkdirp: '0.5.0',
+146 silly resolved        mout: '~0.9.0',
+146 silly resolved        nopt: '~3.0.0',
+146 silly resolved        opn: '~1.0.0',
+146 silly resolved        osenv: '0.1.0',
+146 silly resolved        'p-throttler': '0.1.0',
+146 silly resolved        promptly: '0.2.0',
+146 silly resolved        q: '~1.0.1',
+146 silly resolved        request: '~2.42.0',
+146 silly resolved        'request-progress': '0.3.0',
+146 silly resolved        retry: '0.6.0',
+146 silly resolved        rimraf: '~2.2.0',
+146 silly resolved        semver: '~2.3.0',
+146 silly resolved        'shell-quote': '~1.4.1',
+146 silly resolved        'stringify-object': '~1.0.0',
+146 silly resolved        'tar-fs': '0.5.2',
+146 silly resolved        tmp: '0.0.23',
+146 silly resolved        'update-notifier': '0.2.0',
+146 silly resolved        which: '~1.0.5' },
+146 silly resolved     devDependencies:
+146 silly resolved      { coveralls: '~2.11.0',
+146 silly resolved        'expect.js': '~0.3.1',
+146 silly resolved        grunt: '~0.4.4',
+146 silly resolved        'grunt-cli': '^0.1.13',
+146 silly resolved        'grunt-contrib-jshint': '~0.10.0',
+146 silly resolved        'grunt-contrib-watch': '~0.6.1',
+146 silly resolved        'grunt-exec': '~0.4.2',
+146 silly resolved        'grunt-simple-mocha': '~0.4.0',
+146 silly resolved        istanbul: '~0.3.2',
+146 silly resolved        'load-grunt-tasks': '~0.6.0',
+146 silly resolved        mocha: '~1.21.4',
+146 silly resolved        nock: '~0.46.0',
+146 silly resolved        'node-uuid': '~1.4.1',
+146 silly resolved        proxyquire: '~1.0.1' },
+146 silly resolved     scripts: { test: 'grunt test' },
+146 silly resolved     bin: { bower: 'bin/bower' },
+146 silly resolved     preferGlobal: true,
+146 silly resolved     gitHead: 'b26c072f0db054a1902ec4d2e3726dbf8a1c799a',
+146 silly resolved     bugs: { url: 'https://github.com/bower/bower/issues' },
+146 silly resolved     _id: 'bower@1.3.12',
+146 silly resolved     _shasum: '37de0edb3904baf90aee13384a1a379a05ee214c',
+146 silly resolved     _from: 'bower@',
+146 silly resolved     _npmVersion: '2.0.0',
+146 silly resolved     _npmUser: { name: 'sheerun', email: 'sheerun@sher.pl' },
+146 silly resolved     maintainers: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
+146 silly resolved     dist:
+146 silly resolved      { shasum: '37de0edb3904baf90aee13384a1a379a05ee214c',
+146 silly resolved        tarball: 'http://registry.npmjs.org/bower/-/bower-1.3.12.tgz' },
+146 silly resolved     directories: {},
+146 silly resolved     _resolved: 'https://registry.npmjs.org/bower/-/bower-1.3.12.tgz',
+146 silly resolved     readme: 'ERROR: No README data found!' },
+146 silly resolved   { name: 'karma',
+146 silly resolved     description: 'Spectacular Test Runner for JavaScript.',
+146 silly resolved     homepage: 'http://karma-runner.github.io/',
+146 silly resolved     repository: { type: 'git', url: 'git://github.com/karma-runner/karma.git' },
+146 silly resolved     bugs: { url: 'https://github.com/karma-runner/karma/issues' },
+146 silly resolved     keywords:
+146 silly resolved      [ 'karma',
+146 silly resolved        'spectacular',
+146 silly resolved        'runner',
+146 silly resolved        'karma',
+146 silly resolved        'js',
+146 silly resolved        'javascript',
+146 silly resolved        'testing',
+146 silly resolved        'test',
+146 silly resolved        'remote',
+146 silly resolved        'execution' ],
+146 silly resolved     author: { name: 'Vojta Jína', email: 'vojta.jina@gmail.com' },
+146 silly resolved     contributors:
+146 silly resolved      [ [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object] ],
+146 silly resolved     dependencies:
+146 silly resolved      { di: '~0.0.1',
+146 silly resolved        'socket.io': '0.9.16',
+146 silly resolved        chokidar: '>=0.8.2',
+146 silly resolved        glob: '~3.2.7',
+146 silly resolved        minimatch: '~0.2',
+146 silly resolved        'http-proxy': '~0.10',
+146 silly resolved        optimist: '~0.6.0',
+146 silly resolved        rimraf: '~2.2.5',
+146 silly resolved        q: '~0.9.7',
+146 silly resolved        colors: '~0.6.2',
+146 silly resolved        lodash: '~2.4.1',
+146 silly resolved        mime: '~1.2.11',
+146 silly resolved        log4js: '~0.6.3',
+146 silly resolved        useragent: '~2.0.4',
+146 silly resolved        'graceful-fs': '~2.0.1',
+146 silly resolved        connect: '~2.26.0',
+146 silly resolved        'source-map': '~0.1.31' },
+146 silly resolved     devDependencies:
+146 silly resolved      { grunt: '~0.4',
+146 silly resolved        'grunt-simple-mocha': '*',
+146 silly resolved        'grunt-contrib-jshint': '~0.10.0',
+146 silly resolved        'grunt-contrib-watch': '~0.6.1',
+146 silly resolved        'grunt-coffeelint': '~0.0.6',
+146 silly resolved        'grunt-npm': '~0.0.1',
+146 silly resolved        'grunt-bump': '~0.0.10',
+146 silly resolved        'grunt-conventional-changelog': '~1.1.0',
+146 silly resolved        'grunt-auto-release': '~0.0.3',
+146 silly resolved        'grunt-browserify': '~2.1.3',
+146 silly resolved        'load-grunt-tasks': '~0.6.0',
+146 silly resolved        mocks: '~0.0.10',
+146 silly resolved        which: '~1.0',
+146 silly resolved        mocha: '~1.20.1',
+146 silly resolved        chai: '~1.9.1',
+146 silly resolved        'chai-as-promised': '~4.1.0',
+146 silly resolved        sinon: '~1.10.3',
+146 silly resolved        'sinon-chai': '~2.5.0',
+146 silly resolved        'timer-shim': '~0.3.0',
+146 silly resolved        'karma-jasmine': '~0.1.0',
+146 silly resolved        'karma-mocha': '*',
+146 silly resolved        'karma-qunit': '*',
+146 silly resolved        'karma-coverage': '*',
+146 silly resolved        'karma-requirejs': '*',
+146 silly resolved        'karma-commonjs': '*',
+146 silly resolved        'karma-growl-reporter': '*',
+146 silly resolved        'karma-junit-reporter': '*',
+146 silly resolved        'karma-chrome-launcher': '*',
+146 silly resolved        'karma-firefox-launcher': '*',
+146 silly resolved        'karma-sauce-launcher': '*',
+146 silly resolved        'karma-phantomjs-launcher': '*',
+146 silly resolved        'karma-ng-scenario': '*',
+146 silly resolved        'karma-coffee-preprocessor': '*',
+146 silly resolved        'karma-live-preprocessor': '*',
+146 silly resolved        'karma-html2js-preprocessor': '*',
+146 silly resolved        'karma-browserstack-launcher': '*',
+146 silly resolved        LiveScript: '~1.2.0',
+146 silly resolved        'coffee-errors': '~0.8.6',
+146 silly resolved        'coffee-script': '~1.7.1',
+146 silly resolved        'grunt-jscs-checker': '~0.6.1' },
+146 silly resolved     main: './lib/index',
+146 silly resolved     bin: {},
+146 silly resolved     engines: { node: '~0.8 || ~0.10' },
+146 silly resolved     version: '0.12.31',
+146 silly resolved     license: 'MIT',
+146 silly resolved     gitHead: '6d2e4a7751a04284ce0836eba72cbe844933be9e',
+146 silly resolved     _id: 'karma@0.12.31',
+146 silly resolved     scripts: {},
+146 silly resolved     _shasum: '806aa7c2acb13a39edb9374a7a477e643a5e94c9',
+146 silly resolved     _from: 'karma@',
+146 silly resolved     _npmVersion: '2.1.17',
+146 silly resolved     _nodeVersion: '0.10.35',
+146 silly resolved     _npmUser: { name: 'karmarunnerbot', email: 'karmarunnerbot@gmail.com' },
+146 silly resolved     maintainers: [ [Object], [Object] ],
+146 silly resolved     dist:
+146 silly resolved      { shasum: '806aa7c2acb13a39edb9374a7a477e643a5e94c9',
+146 silly resolved        tarball: 'http://registry.npmjs.org/karma/-/karma-0.12.31.tgz' },
+146 silly resolved     directories: {},
+146 silly resolved     _resolved: 'https://registry.npmjs.org/karma/-/karma-0.12.31.tgz',
+146 silly resolved     readme: 'ERROR: No README data found!' },
+146 silly resolved   { name: 'pm2',
+146 silly resolved     preferGlobal: 'true',
+146 silly resolved     version: '0.12.8',
+146 silly resolved     engines: { node: '>=0.10' },
+146 silly resolved     directories: { bin: './bin', lib: './lib', example: './examples' },
+146 silly resolved     author:
+146 silly resolved      { name: 'Strzelewicz Alexandre',
+146 silly resolved        email: 'as@unitech.io',
+146 silly resolved        url: 'https://keymetrics.io' },
+146 silly resolved     maintainers: [ [Object], [Object] ],
+146 silly resolved     contributors:
+146 silly resolved      [ [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object],
+146 silly resolved        [Object] ],
+146 silly resolved     homepage: 'https://github.com/Unitech/pm2',
+146 silly resolved     description: 'Production process manager for Node.JS applications with a built-in load balancer.',
+146 silly resolved     main: 'index.js',
+146 silly resolved     scripts: { test: 'NODE_ENV=test bash test/index.sh && NODE_ENV=test bash test/main.sh' },
+146 silly resolved     keywords:
+146 silly resolved      [ 'cli',
+146 silly resolved        'fault tolerant',
+146 silly resolved        'sysadmin',
+146 silly resolved        'tools',
+146 silly resolved        'pm2',
+146 silly resolved        'logs',
+146 silly resolved        'log',
+146 silly resolved        'json',
+146 silly resolved        'express',
+146 silly resolved        'hapi',
+146 silly resolved        'kraken',
+146 silly resolved        'reload',
+146 silly resolved        'microservice',
+146 silly resolved        'programmatic',
+146 silly resolved        'harmony',
+146 silly resolved        'node-pm2',
+146 silly resolved        'production',
+146 silly resolved        'keymetrics',
+146 silly resolved        'deploy',
+146 silly resolved        'deployment',
+146 silly resolved        'daemon',
+146 silly resolved        'supervisor',
+146 silly resolved        'nodemon',
+146 silly resolved        'pm2.io',
+146 silly resolved        'ghost',
+146 silly resolved        'ghost production',
+146 silly resolved        'monitoring',
+146 silly resolved        'process manager',
+146 silly resolved        'forever',
+146 silly resolved        'forever-monitor',
+146 silly resolved        'keep process alive',
+146 silly resolved        'process configuration',
+146 silly resolved        'clustering',
+146 silly resolved        'cluster cli',
+146 silly resolved        'cluster',
+146 silly resolved        'cron',
+146 silly resolved        'devops',
+146 silly resolved        'dev ops' ],
+146 silly resolved     bin: { pm2: './bin/pm2' },
+146 silly resolved     dependencies:
+146 silly resolved      { async: '~0.9.0',
+146 silly resolved        chalk: '~0.5.1',
+146 silly resolved        chokidar: '~0.12.0',
+146 silly resolved        'cli-table': '0.3.1',
+146 silly resolved        'coffee-script': '1.8.0',
+146 silly resolved        colors: '1.0.3',
+146 silly resolved        commander: '2.6.0',
+146 silly resolved        cron: '1.0.5',
+146 silly resolved        debug: '2.1.0',
+146 silly resolved        eventemitter2: '0.4.14',
+146 silly resolved        'json-stringify-safe': '5.0.0',
+146 silly resolved        moment: '2.9.0',
+146 silly resolved        nssocket: '0.5.3',
+146 silly resolved        pidusage: '0.1.1',
+146 silly resolved        pmx: 'latest',
+146 silly resolved        vizion: 'latest',
+146 silly resolved        'pm2-axon': 'latest',
+146 silly resolved        'pm2-axon-rpc': '0.3.6',
+146 silly resolved        'pm2-deploy': 'latest',
+146 silly resolved        'pm2-multimeter': '0.1.2',
+146 silly resolved        shelljs: '0.3.0',
+146 silly resolved        isbinaryfile: '^2.0.3',
+146 silly resolved        semver: '4.3.1',
+146 silly resolved        'pm2-logs': '~0.1.1',
+146 silly resolved        ikt: 'git+http://ikt.pm2.io/ikt.git#master' },
+146 silly resolved     devDependencies:
+146 silly resolved      { mocha: '^1.20.1',
+146 silly resolved        should: '^4.0.0',
+146 silly resolved        'better-assert': '^1.0.0',
+146 silly resolved        'promise-spawner': '^0.0.3',
+146 silly resolved        punt: '*' },
+146 silly resolved     optionalDependencies:
+146 silly resolved      { 'pm2-logs': '~0.1.1',
+146 silly resolved        ikt: 'git+http://ikt.pm2.io/ikt.git#master' },
+146 silly resolved     bugs: { url: 'https://github.com/Unitech/pm2/issues' },
+146 silly resolved     repository: { type: 'git', url: 'git://github.com/Unitech/pm2.git' },
+146 silly resolved     license: 'AGPLv3',
+146 silly resolved     gitHead: '14261fd4a02d9c09a00e6dbbfa18f0b34199d482',
+146 silly resolved     _id: 'pm2@0.12.8',
+146 silly resolved     _shasum: 'b465688d47b70744423b38d0d3f9cdbdad495533',
+146 silly resolved     _from: 'pm2@',
+146 silly resolved     _npmVersion: '2.5.1',
+146 silly resolved     _nodeVersion: '0.12.0',
+146 silly resolved     _npmUser: { name: 'jshkurti', email: 'jonishkurti90@gmail.com' },
+146 silly resolved     dist:
+146 silly resolved      { shasum: 'b465688d47b70744423b38d0d3f9cdbdad495533',
+146 silly resolved        tarball: 'http://registry.npmjs.org/pm2/-/pm2-0.12.8.tgz' },
+146 silly resolved     _resolved: 'https://registry.npmjs.org/pm2/-/pm2-0.12.8.tgz' } ]
+147 info install grunt-cli@0.1.13 into /usr/local/lib
+148 info install bower@1.3.12 into /usr/local/lib
+149 info install karma@0.12.31 into /usr/local/lib
+150 info install pm2@0.12.8 into /usr/local/lib
+151 info installOne grunt-cli@0.1.13
+152 info installOne bower@1.3.12
+153 info installOne karma@0.12.31
+154 info installOne pm2@0.12.8
+155 verbose lib/node_modules/bower unbuild
+156 verbose lib/node_modules/grunt-cli unbuild
+157 verbose lib/node_modules/karma unbuild
+158 verbose lib/node_modules/pm2 unbuild
+159 info preuninstall bower@1.3.12
+160 info preuninstall grunt-cli@0.1.13
+161 info preuninstall karma@0.12.31
+162 info uninstall bower@1.3.12
+163 info uninstall grunt-cli@0.1.13
+164 info uninstall karma@0.12.31
+165 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild bower@1.3.12
+166 verbose /usr/local/bin,[object Object] binRoot
+167 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild grunt-cli@0.1.13
+168 verbose /usr/local/bin,[object Object] binRoot
+169 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild karma@0.12.31
+170 verbose /usr/local/bin,[object Object] binRoot
+171 info postuninstall karma@0.12.31
+172 info preuninstall pm2@0.12.7
+173 verbose lib/node_modules/bower unbuild
+174 info uninstall pm2@0.12.7
+175 verbose lib/node_modules/grunt-cli unbuild
+176 verbose lib/node_modules/karma unbuild
+177 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild pm2@0.12.7
+178 verbose /usr/local/bin,[object Object] binRoot
+179 info preuninstall bower@1.3.12
+180 info preuninstall grunt-cli@0.1.13
+181 verbose lib/node_modules/pm2 unbuild
+182 info preuninstall karma@0.12.31
+183 info uninstall bower@1.3.12
+184 info uninstall grunt-cli@0.1.13
+185 info uninstall karma@0.12.31
+186 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild bower@1.3.12
+187 verbose /usr/local/bin,[object Object] binRoot
+188 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild grunt-cli@0.1.13
+189 verbose /usr/local/bin,[object Object] binRoot
+190 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild karma@0.12.31
+191 verbose /usr/local/bin,[object Object] binRoot
+192 info postuninstall karma@0.12.31
+193 error error rolling back Error: EACCES, unlink '/usr/local/bin/bower'
+193 error error rolling back  bower@1.3.12 { [Error: EACCES, unlink '/usr/local/bin/bower'] errno: 3, code: 'EACCES', path: '/usr/local/bin/bower' }
+194 error Error: EACCES, unlink '/usr/local/bin/bower'
+194 error  { [Error: EACCES, unlink '/usr/local/bin/bower'] errno: 3, code: 'EACCES', path: '/usr/local/bin/bower' }
+195 error Please try running this command again as root/Administrator.
+196 error System Linux 3.16.0-4-amd64
+197 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "-g" "grunt-cli" "karma" "bower" "pm2"
+198 error cwd /home/tm/moogle/deployment/vm-setup
+199 error node -v v0.10.29
+200 error npm -v 1.4.21
+201 error path /usr/local/bin/bower
+202 error code EACCES
+203 error errno 3
+204 error stack Error: EACCES, unlink '/usr/local/bin/bower'
+205 verbose exit [ 3, true ]

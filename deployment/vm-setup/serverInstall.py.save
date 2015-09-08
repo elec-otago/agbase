@@ -1,0 +1,146 @@
+import os
+import argparse
+import getopt
+import logging as log
+import installHelper
+
+
+#TODO:
+# symlink the nodejs executable ?
+#
+#
+#
+
+class serverInstall:
+  def __init__(self):
+    parser = argparse.ArgumentParser(description='This script is used to setup the dependencies for the moogle website.')
+    parser.add_argument('-v','--verbose' , action="store_true", help="Prints all the steps that the program takes.")
+    parser.add_argument('-u','--user',action="store",help="User to be created to run the app. DEFAULT=pguser")
+    args = parser.parse_args()   
+    
+    self.verbose = args.verbose
+    
+    if self.verbose:
+      log.basicConfig(format="%(levelname)s: %(message)s", level=log.DEBUG)
+      log.info("Verbose output.")
+    else:
+      log.basicConfig(format="%(levelname)s: %(message)s")
+    
+    self.user = "pguser"
+    if args.user:
+      self.user = args.user
+      
+  def install(self):
+    self.updateAptitude()
+    self.installDependencies()
+    self.installNPM()
+    self.installNPMDependencies()
+    self.createLinuxUser()
+    self.createDB()
+  
+  def createLinuxUser(self):
+    cmd = "useradd {} -G www-data -m -p pgwow".format(self.user)
+    if installHelper.is_nix_user(self.user):
+      print self.user, " already exists"
+      return 0
+
+    (user_status, user_stdout,user_stderr) = installHelper.subprocess_cmd(cmd)
+
+ser_status == 0:
+      print "Create nix user successful", user_stdout
+      log.info("Create nix user successful",user_stdout)
+      return user_status
+    else:
+      print "Failed to create nix user please run this script as sudo"
+      log.error("Failed to create nix user.", user_status, user_stdout, user_stderr)
+      return None
+    
+  def updateAptitude(self):
+    cmd = "apt-get update"
+    (update_status,update_stdout, update_stderr) = installHelper.subprocess_cmd(cmd)
+    
+    if update_status == 0:
+      print "Successfully updated aptitude", update_stdout
+      log.info("Successfully updated aptitude", update_stdout)
+      return update_status
+    else:
+      print "Failed to update aptitude run this script as sudo"
+      log.error("Failed to update aptitude.", update_status, update_stdout, update_stderr)
+      return None
+    
+
+  def installDependencies(self):
+    cmd = "apt-get install curl git nodejs redis-server postgresql mongodb postgresql-client postgresql-contrib rsync python-psycopg2 apache2 apache2.2-common"
+    (install_status, install_stdout, install_stderr) = installHelper.subprocess_cmd(cmd)
+    
+    if install_status == 0:
+      print "Successfully installed dependencies", install_stdout
+      log.info("Successfully installed dependencies", install_stdout)
+      return install_status
+    else:
+      print "Failed to install dependencies run this script as sudo"
+      log.error("Failed to install dependencies", install_status, install_stdout, install_stderr)
+      return None
+    
+    
+  def installNPM(self):
+    cmd = "sudo apt-get install npm"
+    (npm_status, npm_stdout, npm_stderr) = installHelper.subprocess_cmd(cmd)
+    
+    if npm_status == 0:
+      print "Successfully installed npm", npm_stdout
+      log.info("Successfully installed npm", npm_stdout)
+      return npm_status
+    else:
+      print "Failed to install npm run this script as sudo"
+      log.error("Failed to install npm", npm_status, npm_stdout, npm_stderr)
+      return None
+  
+  def installNPMDependencies(self):
+    cmd = "sudo npm install -g grunt-cli karma bower"
+    (npm_status, npm_stdout, npm_stderr) = installHelper.subprocess_cmd(cmd)
+    
+    if npm_status == 0:
+      print "Successfully installed npms Dependencies", npm_stdout
+      log.info("Successfully installed npms Dependencies", npm_stdout)
+      return npm_status
+    else:
+      print "Failed to install npm's Dependencies run this script as sudo"
+      log.error("Failed to install NPM's Dependencies", npm_status, npm_stdout, npm_stderr)
+      return None
+    
+  def createDB(self):
+    (su_status, su_stdout, su_stderr) = installHelper.subprocess_demote_cmd("createdb wowdb -O pguser", "postgres")
+    
+    if su_status == 0:
+      print "Could not create database"    
+      return su_stderr
+    else:
+      print "wow database created" 
+      return su_status
+        
+        
+si = serverInstall()
+si.install()
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
