@@ -28,7 +28,7 @@ module.config(function config( $stateProvider, uiGmapGoogleMapApiProvider ) {
     });
 
     uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyBMKg5EP-e9KEbsPtIlotV1NIz6eWBguCY',
+        key: '<google map API key>',
         v: '3.17',
         libraries: 'weather,geometry,visualization'
     });
