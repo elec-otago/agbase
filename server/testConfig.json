@@ -1,0 +1,17 @@
+/*
+* PM2 production run configuration
+*/
+{
+  "apps": [
+    {
+      "name": "AgBaseServer Test",
+      "script": "./bin/www",
+      //"args"      : "['--production' ,'--loglevel', '{0,1,2}','--standalone', '{websocket,webserver}']",
+      "env": {
+        "NODE_ENV": "unit_testing"
+        //    "HTTP_PORT" : 80,
+        //    "HTTPS_PORT": 443
+      }
+    }
+  ]
+}

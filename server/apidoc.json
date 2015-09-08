@@ -1,0 +1,11 @@
+{
+  "name": "AgBase",
+  "version": "0.1.0",
+  "description": "AgBase REST API description",
+  "title": "AgBase API docs ",
+  "sampleUrl": "https://agbase.elec.ac.nz/api",
+  "header": {
+    "title": "Overview",
+    "filename": "api_intro.md"
+  }
+}

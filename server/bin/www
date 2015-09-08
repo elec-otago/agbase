@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+var debug = require('debug')('my-application');
+var app = require('../app');
+var fs = require('fs');
+var https = require('https');
+
+app.set('http-port', process.env.PORT || 8080);
+app.set('https-port', process.env.PORT_HTTPS || 8443);
+
+var dagKey = fs.readFileSync('./ssl_key/dag-key.pem');
+var dagCert = fs.readFileSync('./ssl_key/dag-cert.pem');
+var moogleCA = fs.readFileSync('./ssl_key/dag-int-ca.pem');
+
+var httpsOptions = {
+
+    ca:[moogleCA],
+    key: dagKey,
+    cert: dagCert
+};
+
+//https is not used by node in deployment - instead it is done by nginx
+if(process.env.NODE_ENV !== 'aws') {
+
+    var server = https.createServer(httpsOptions, app, function() {
+        debug('Express server listening on port ' + server.address().port);
+    }).listen(app.get('https-port'));
+}
+
+app.listen(app.get('http-port'), function() {
+    console.log("Moogle Server listening on port %d in %s mode", app.get('http-port'), process.env.NODE_ENV);
+});
+
+module.exports = app;

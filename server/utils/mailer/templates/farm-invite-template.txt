@@ -1,0 +1,3 @@
+Hi. You've been invited to join a farm.
+
+Go to {responseUrl} to accepted
