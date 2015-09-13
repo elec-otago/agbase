@@ -31,3 +31,9 @@ There are several example of how to do this. A python library is available from 
 repository. This library makes the job of uploading measurements using the restful API and
 also mining the data within the AgBase server relatively easy.
 
+
+## Acknowledgements
+
+The development of AgBase was supported by grants from the New Zealand
+Ministry of Business Innovation and Employment, and the University of Otago.
+
